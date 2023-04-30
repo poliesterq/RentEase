@@ -14,4 +14,10 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\RentEase.BLL\RentEase.BLL.csproj" />
+    <ProjectReference Include="..\RentEase.DAL\RentEase.DAL.csproj" />
+    <ProjectReference Include="..\RentEase.Domain\RentEase.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
