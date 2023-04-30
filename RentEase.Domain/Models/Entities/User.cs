@@ -11,6 +11,10 @@ public class User : IdentityUser
 
     public DateTime BirthDate { get; set; }
 
+    public List<Item> Items { get; set; } = new List<Item>();
+
+    public List<Order> Orders { get; set; } = new List<Order>();
+
     [NotMapped]
     public IEnumerable<string> Roles { get; set; }
 }

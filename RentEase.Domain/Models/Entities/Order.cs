@@ -11,6 +11,8 @@ public class Order : BaseEntity
     
     public string DeliveryAdress { get; set; }
     
+    public bool IsConfirmed { get; set; }
+    
     public int ItemId { get; set; }
     
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]

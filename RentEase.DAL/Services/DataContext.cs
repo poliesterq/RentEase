@@ -18,5 +18,17 @@ public class DataContext : IdentityDbContext<User>
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+        
+        modelBuilder.Entity<Order>()
+            .HasOne(o => o.Item)
+            .WithMany(i => i.Orders)
+            .HasForeignKey(o => o.ItemId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder.Entity<Order>()
+            .HasOne(o => o.Tenant)
+            .WithMany(u => u.Orders)
+            .HasForeignKey(o => o.TenantId)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }
