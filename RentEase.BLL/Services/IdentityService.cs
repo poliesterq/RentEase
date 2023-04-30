@@ -100,7 +100,7 @@ public class IdentityService : IIdentityService
         return await this.GenerateAuthenticationResult(newUser);
     }
 
-    public async Task<AuthenticationResult> Update(UserRegisterModel user)
+    public async Task<AuthenticationResult> Update(UserUpdateModel user)
     {
         var identityUser = await _userManager.FindByIdAsync(user.Id);
 

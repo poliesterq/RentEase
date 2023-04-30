@@ -9,5 +9,5 @@ public interface IIdentityService
 
     public Task<AuthenticationResult> Registration(UserRegisterModel user);
 
-    public Task<AuthenticationResult> Update(UserRegisterModel user);
+    public Task<AuthenticationResult> Update(UserUpdateModel user);
 }
