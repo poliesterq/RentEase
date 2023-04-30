@@ -1,8 +1,7 @@
 ﻿namespace RentEase.Domain.Enums;
 
-public enum Roles
+public enum Role
 {
     Admin = 0,
-    Tenant = 1,
-    Landlord = 2
+    User = 1
 }
