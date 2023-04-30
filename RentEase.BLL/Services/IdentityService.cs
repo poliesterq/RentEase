@@ -19,14 +19,17 @@ public class IdentityService : IIdentityService
     private readonly ILogger<IdentityService> _logger;
     private readonly UserManager<User> _userManager;
     private readonly JwtOptions _jwtOptions;
+    private readonly IChatService _chatService;
 
     public IdentityService(ILogger<IdentityService> logger,
-        UserManager<User> userManager,
-        IOptions<JwtOptions> jwtOptions)
+        IChatService chatService,
+        IOptions<JwtOptions> jwtOptions,
+        UserManager<User> userManager)
     {
         _logger = logger;
         _userManager = userManager;
         _jwtOptions = jwtOptions.Value;
+        _chatService = chatService;
     }
 
     public async Task<AuthenticationResult> Login(UserLoginModel user)
@@ -121,8 +124,14 @@ public class IdentityService : IIdentityService
         await _userManager.AddPasswordAsync(identityUser, user.Password);
 
         var result = await _userManager.UpdateAsync(identityUser);
+        var chatUpdateResult = await _chatService.UpdateUser(new()
+        {
+            Id = user.Id,
+            FirstName = user.FirstName,
+            LastName = user.LastName
+        });
 
-        if (!result.Succeeded)
+        if (!result.Succeeded || !chatUpdateResult)
         {
             _logger.LogInformation("Update was failed");
             return new AuthenticationResult
