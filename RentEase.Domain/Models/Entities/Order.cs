@@ -9,7 +9,7 @@ public class Order : BaseEntity
     
     public DateTime DateTo { get; set; }
     
-    public string DeliveryAdress { get; set; }
+    public string DeliveryAddress { get; set; }
     
     public bool IsConfirmed { get; set; }
     
