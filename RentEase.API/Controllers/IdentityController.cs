@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using RentEase.API.Attributes;
 using RentEase.BLL.Abstractions;
+using RentEase.Domain.Enums;
 using RentEase.Domain.Models.Request;
 
 namespace RentEase.API.Controllers;
@@ -36,7 +38,9 @@ public class IdentityController : ControllerBase
     }
 
     [HttpPut]
+    [Route("Update")]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [AuthorizeRoles(Role.User)]
     public async Task<IActionResult> Update(UserUpdateModel user)
     {
         var result = await _identityService.Update(user);
