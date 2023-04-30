@@ -59,7 +59,7 @@ public class ChatController : ControllerBase
     }
 
     [HttpPut]
-    [Route("LeaveChat/{chatId}")]
+    [Route("Leave/{chatId}")]
     public async Task<IActionResult> LeaveChat(string chatId)
     {
         var userId = User.Claims.FirstOrDefault(claim => claim.Type == "id")?.Value;
@@ -68,7 +68,7 @@ public class ChatController : ControllerBase
     }
 
     [HttpPut]
-    [Route("SendMessage")]
+    [Route("Message/Send")]
     public async Task<IActionResult> SendMessage(SendMessageModel message)
     {
         var result = await _chatService.SendMessage(message);
@@ -76,7 +76,7 @@ public class ChatController : ControllerBase
     }
 
     [HttpPut]
-    [Route("DeleteMessage")]
+    [Route("Message/Delete")]
     public async Task<IActionResult> DeleteMessage(DeleteMessageModel message)
     {
         var result = await _chatService.DeleteMessage(message);
