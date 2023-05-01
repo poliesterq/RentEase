@@ -14,4 +14,6 @@ public interface IItemService
     public Task<bool> Update(Item item);
 
     public Task<bool> Delete(int id);
+    
+    public Task UpdateStatus();
 }
