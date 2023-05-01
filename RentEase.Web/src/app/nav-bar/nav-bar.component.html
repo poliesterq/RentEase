@@ -32,7 +32,7 @@
   <button 
   *ngIf="role === Role[Role.User]"
   mat-flat-button [routerLink]="['/account/details']">
-    <mat-icon aria-hidden="false" color='accent' svgIcon="user"></mat-icon>
+    <mat-icon aria-hidden="false" svgIcon="user"></mat-icon>
     {{"navbar.profile" | translate}}
   </button>
   <button *ngIf="isLoggedIn" mat-icon-button color="accent" (click)="logOut()">

@@ -1,0 +1,69 @@
+<div class="container">
+    <h1>{{"title.registration" | translate}}
+    </h1>
+    <mat-card>  
+        <mat-card-content>
+            <form (ngSubmit)="registration()">
+                <mat-form-field appearance="outline">
+                    <mat-label>{{"label.first_name" | translate}}</mat-label>
+                    <input matInput [formControl]="firstName" placeholder="{{'placeholder.first_name' | translate}}" required>
+                    <mat-error *ngIf="firstName.invalid">{{getFirstNameErrorMessage()}}</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>{{"label.last_name" | translate}}</mat-label>
+                    <input matInput [formControl]="lastName" placeholder="{{'placeholder.last_name' | translate}}" required>
+                    <mat-error *ngIf="lastName.invalid">{{getLastNameErrorMessage()}}</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>{{"label.email" | translate}}</mat-label>
+                    <input matInput [formControl]="email" type="email" placeholder="lane@example.com" required>
+                    <mat-icon color="primary" matSuffix>alternate_email</mat-icon>
+
+                    <mat-error *ngIf="email.invalid">{{getEmailErrorMessage()}}</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>{{"label.phone_number" | translate}}</mat-label>
+                    <input matInput [formControl]="phoneNumber" placeholder="{{'placeholder.phone_number' | translate}}">
+                    <mat-icon color="primary" matSuffix>local_phone</mat-icon>
+
+                    <mat-error *ngIf="phoneNumber.invalid">{{getPhoneNumberErrorMessage()}}</mat-error>
+                </mat-form-field>
+                
+                <mat-form-field appearance="outline">
+                    <mat-label>{{"label.password" | translate}}</mat-label>
+                    <input matInput [formControl]="password" placeholder="$0mePa$$word" 
+                    [type]="hidePassword ? 'password' : 'text'" required>
+                    <button type="button" mat-icon-button color="primary" 
+                    matSuffix (click)="hidePassword = !hidePassword"
+                    [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+                        <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                    <mat-error *ngIf="password.invalid">{{getPasswordErrorMessage()}}</mat-error>
+                </mat-form-field>
+          
+                <mat-form-field appearance="outline">
+                    <mat-label>{{"label.password_confirmation" | translate}}</mat-label>
+                    <input matInput [formControl]="passwordConfirmation" placeholder="$0mePa$$word" 
+                    [type]="hidePassword ? 'password' : 'text'" required>
+                    <button type="button" mat-icon-button color="primary" 
+                    matSuffix (click)="hidePassword = !hidePassword"
+                    [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+                      <mat-icon >{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                    <mat-error *ngIf="passwordConfirmation.invalid">{{getPasswordConfirmationErrorMessage()}}</mat-error>
+                </mat-form-field>
+                <mat-error *ngIf="passwordConfirmation.touched && form.hasError('passwordsNotMatching')">
+                    <small>Passwords not matching</small>
+                </mat-error>
+    
+                <button type="submit" color="accent" mat-flat-button>
+                    {{"button.registration" | translate}}
+                </button>
+            </form>
+        </mat-card-content>
+    </mat-card>
+  
+    <a mat-button color="primary" [routerLink]="['/account/login']">
+        {{"button.to_login" | translate}}
+    </a>
+</div> 

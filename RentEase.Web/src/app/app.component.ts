@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { ThemePalette } from '@angular/material/core';
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
 
 
 @Component({
@@ -9,11 +10,14 @@ import { ThemePalette } from '@angular/material/core';
 })
 export class AppComponent {
   title = 'RentEase.Web';
-  // primaryColor: ThemePalette = 'default-theme';
 
-  public isExpanded = false;
-
-  public toggleMenu() {
-    this.isExpanded = !this.isExpanded;
+  constructor(
+    private iconRegistry: MatIconRegistry,
+    private domSanitizer: DomSanitizer
+    ) {
+        this.iconRegistry.addSvgIcon(
+      `user`,
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/images/user.svg")
+    );
   }
 }

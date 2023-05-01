@@ -30,9 +30,15 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSidenavModule } from "@angular/material/sidenav";
 
+import { NotFoundComponent } from './errors/not-found/not-found.component';
+import { UnauthorizedComponent } from './errors/unauthorized/unauthorized.component';
+import { ForbiddenComponent } from './errors/forbidden/forbidden.component';
+
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { LoginComponent } from './account/login/login.component';
+import { RegistrationComponent } from './account/registration/registration.component';
+import { DetailsComponent } from './account/details/details.component';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http);
@@ -43,11 +49,18 @@ export function tokenGetter(){
 }
 
 @NgModule({
-  declarations: [	
+  declarations: [
     AppComponent,
     NavBarComponent,
     HomePageComponent,
-    LoginComponent
+
+    NotFoundComponent,
+    UnauthorizedComponent,
+    ForbiddenComponent,
+
+    LoginComponent,
+    RegistrationComponent,
+    DetailsComponent
    ],
   imports: [
     BrowserModule,
@@ -81,7 +94,7 @@ export function tokenGetter(){
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        allowedDomains: ['localhost:8000']
+        allowedDomains: ['localhost:7129']
       }
     }),
     TranslateModule.forRoot({
