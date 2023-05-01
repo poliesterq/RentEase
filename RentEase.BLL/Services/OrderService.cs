@@ -117,7 +117,7 @@ public class OrderService : IOrderService
 
     public async Task<bool> Confirm(int id)
     {
-        var order = await _orderRepository.Get(id);
+        var order = await _orderRepository.Get(id, includes: new() { order => order.Item});
 
         if (order == null)
         {
@@ -125,6 +125,11 @@ public class OrderService : IOrderService
         }
 
         order.IsConfirmed = true;
+        if (order.DateFrom == DateTime.Today)
+        {
+            order.Item.IsAvailable = false;
+        }
+        
         return await _orderRepository.Update(order);
     }
 }

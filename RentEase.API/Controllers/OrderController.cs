@@ -27,7 +27,6 @@ public class OrderController : ControllerBase
     }
 
     [HttpGet]
-    [AllowAnonymous]
     public async Task<IActionResult> Get([FromQuery] OrderSearchParameters orderParameters)
     {
         return Ok(await _orderService.Get(orderParameters));

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using RentEase.API.BackgroundTasks;
 using RentEase.API.Extensions;
 using RentEase.API.Middlewares;
 using RentEase.BLL.Abstractions;
@@ -106,6 +107,8 @@ builder.Services.AddSwaggerGen(options =>
 });
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+builder.Services.AddHostedService<ItemHostedService>();
 
 builder.Services.AddScoped<IIdentityService, IdentityService>();
 builder.Services.AddScoped<IChatService, ChatService>();
