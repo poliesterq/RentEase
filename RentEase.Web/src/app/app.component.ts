@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ThemePalette } from '@angular/material/core';
+
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'RentEase.Web';
+  // primaryColor: ThemePalette = 'default-theme';
+
+  public isExpanded = false;
+
+  public toggleMenu() {
+    this.isExpanded = !this.isExpanded;
+  }
 }
