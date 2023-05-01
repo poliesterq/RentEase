@@ -8,7 +8,20 @@
     },
     "button": {
         "edit": "Редагувати",
-        "start": "Почати"
+        "start": "Почати",
+        "login": "Вхід",
+        "to_registration": "До реєстрації"
+    },
+    "title": {
+        "login": "Вхід",
+        "registration": "Регістрація"
+    },
+    "placeholder": {
+        
+    },
+    "label":{
+        "email": "Электрона пошта",
+        "password": "Пароль"
     },
     "home-page": {
         "title": "Ласкаво просимо до RentEase!",

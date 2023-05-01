@@ -1,0 +1,33 @@
+<div class="container">
+    <h1>{{"title.login" | translate}}</h1>
+    <mat-card>
+        <mat-card-content>
+            <form (ngSubmit)="login()">
+                <mat-form-field appearance="outline">
+                    <mat-label>{{"label.email" | translate}}
+                    </mat-label>
+                    <input matInput type="email" placeholder="lane@example.com" [formControl]="email" required> 
+                    <mat-error *ngIf="email.invalid">{{getEmailErrorMessage()}}</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>{{"label.password" | translate}}</mat-label>
+                    <input matInput placeholder="$0mePa$$word" 
+                    [formControl]="password" [type]="hidePassword ? 'password' : 'text'" required>
+                    <button type="button" mat-icon-button matSuffix (click)="hidePassword = !hidePassword"
+                    [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+                        <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                    <mat-error *ngIf="password.invalid">{{getPasswordErrorMessage()}}</mat-error>
+                </mat-form-field>
+                
+                <button type="submit" color="accent" mat-flat-button>
+                    {{"button.login" | translate}}
+                </button>
+            </form>
+        </mat-card-content>
+    </mat-card>
+
+    <a mat-button color="primary" [routerLink]="['/account/registration']">
+        {{"button.to_registration" | translate}}
+    </a>
+</div>

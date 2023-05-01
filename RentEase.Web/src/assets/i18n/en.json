@@ -8,7 +8,20 @@
     },
     "button": {
         "edit": "Edit",
-        "start": "Start"
+        "start": "Start",
+        "login": "Login",
+        "to_registration": "Go to registration"
+    },
+    "title": {
+        "login": "Login",
+        "registration": "Registration"
+    },
+    "placeholder": {
+        
+    },
+    "label":{
+        "email": "Email",
+        "password": "Password"
     },
     "home-page": {
         "title": "Welcome to RentEase!",

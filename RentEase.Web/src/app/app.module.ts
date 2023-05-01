@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
+import { JwtModule } from '@auth0/angular-jwt';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
@@ -36,6 +38,10 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http);
 }
 
+export function tokenGetter(){
+  return localStorage.getItem('access_token');
+}
+
 @NgModule({
   declarations: [	
     AppComponent,
@@ -49,6 +55,8 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     BrowserAnimationsModule,
 
     HttpClientModule,
+
+    JwtModule,
 
     FormsModule,
     ReactiveFormsModule,
@@ -70,6 +78,12 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     MatTooltipModule,
     MatSidenavModule,
 
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ['localhost:8000']
+      }
+    }),
     TranslateModule.forRoot({
       loader: {
           provide: TranslateLoader,
