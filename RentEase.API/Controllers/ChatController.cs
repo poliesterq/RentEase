@@ -75,7 +75,7 @@ public class ChatController : ControllerBase
         return result != null ? Ok(result) : NotFound();
     }
 
-    [HttpPut]
+    [HttpDelete]
     [Route("Message/Delete")]
     public async Task<IActionResult> DeleteMessage(DeleteMessageModel message)
     {
