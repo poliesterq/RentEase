@@ -22,7 +22,9 @@
     "placeholder": {
         "first_name": "Джейн",
         "last_name": "Лейн",
-        "phone_number": "+38 00 0000 000"
+        "phone_number": "+38 00 0000 000",
+        "date_format": "DD.MM.YYYY",
+        "date": "01.01.2000"
     },
     "label":{
         "email": "Электрона пошта",
@@ -30,7 +32,8 @@
         "password_confirmation": "Підтвердження паролю",
         "first_name": "Ім'я",
         "last_name": "Прізвище",
-        "phone_number": "Телефон"
+        "phone_number": "Телефон",
+        "birthdate": "Дата народження"
     },
     "home-page": {
         "title": "Ласкаво просимо до RentEase!",

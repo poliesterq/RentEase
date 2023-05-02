@@ -61,7 +61,8 @@ export class DetailsComponent implements OnInit {
         firstName: this.firstName.value,
         lastName: this.lastName.value,
         phoneNumber: this.phoneNumber.value,
-        password: this.password.value
+        password: this.password.value,
+        birthDate: this.user.birthDate
       };
 
       this.identityService.edit(user).pipe(

@@ -21,12 +21,21 @@
 
                     <mat-error *ngIf="email.invalid">{{getEmailErrorMessage()}}</mat-error>
                 </mat-form-field>
+                
                 <mat-form-field appearance="outline">
                     <mat-label>{{"label.phone_number" | translate}}</mat-label>
                     <input matInput [formControl]="phoneNumber" placeholder="{{'placeholder.phone_number' | translate}}">
                     <mat-icon color="primary" matSuffix>local_phone</mat-icon>
 
                     <mat-error *ngIf="phoneNumber.invalid">{{getPhoneNumberErrorMessage()}}</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>{{"label.birthdate" | translate}}</mat-label>
+                    <input matInput [formControl]="birthdate" [matDatepicker]="picker" placeholder="01/01/2000" required>
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>
                 
                 <mat-form-field appearance="outline">
