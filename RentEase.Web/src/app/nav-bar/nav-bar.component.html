@@ -1,0 +1,41 @@
+<mat-toolbar color="primary">
+  <img src="..\assets\images\logo.png" alt="Logo picture">
+
+  <a mat-flat-button [routerLink]="['/company']">
+    {{"navbar.items" | translate}}
+  </a>
+  <a mat-flat-button [routerLink]="['/company']">
+    {{"navbar.orders" | translate}}
+  </a>
+
+  <span class="spacer"></span>
+  
+  <mat-select class="language" [(ngModel)]="language"> 
+    <mat-option *ngFor="let language of languages" [value]="language" (click)="changeLanguage(language)">
+      {{language}}
+    </mat-option>
+  </mat-select>
+
+  <button 
+  *ngIf="role === Role[Role.User]"
+  mat-icon-button [routerLink]="['/chat']">
+    <mat-icon>
+      <!-- [matBadge]="countUnread" matBadgeColor="accent" [matBadgeHidden]="countUnread == 0" -->
+      mail
+    </mat-icon>
+  </button>
+
+  <button *ngIf="!isLoggedIn" mat-flat-button [routerLink]="['/account/login']">
+    <mat-icon color='accent'>login</mat-icon>
+    {{"navbar.login" | translate}}
+  </button>
+  <button 
+  *ngIf="role === Role[Role.User]"
+  mat-flat-button [routerLink]="['/account/details']">
+    <mat-icon aria-hidden="false" svgIcon="user"></mat-icon>
+    {{"navbar.profile" | translate}}
+  </button>
+  <button *ngIf="isLoggedIn" mat-icon-button color="accent" (click)="logOut()">
+    <mat-icon color='accent'>logout</mat-icon>
+  </button>
+</mat-toolbar>

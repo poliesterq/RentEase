@@ -1,0 +1,22 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 3em 3em 3em;
+}
+
+mat-form-field {
+    min-width: 400px;
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+button {
+    justify-self: center;
+}

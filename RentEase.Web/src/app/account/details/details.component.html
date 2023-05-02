@@ -1,0 +1,64 @@
+<div class="container">
+    <mat-card>
+        <mat-card-title>
+            {{user.firstName}} {{user.lastName}}</mat-card-title>
+        <mat-card-content>
+            <form (ngSubmit)="edit()">
+                <mat-form-field appearance="standard">
+                    <mat-label>{{"label.first_name" | translate}}</mat-label>
+                    <input matInput [formControl]="firstName" [(ngModel)]="user.firstName" placeholder="{{'placeholder.first_name' | translate}}" required>
+                    <mat-error *ngIf="firstName.invalid">{{getFirstNameErrorMessage()}}</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>{{"label.last_name" | translate}}</mat-label>
+                    <input matInput [formControl]="lastName" [(ngModel)]="user.lastName" placeholder="{{'placeholder.last_name' | translate}}" required>
+                    <mat-error *ngIf="lastName.invalid">{{getLastNameErrorMessage()}}</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>{{"label.email" | translate}}</mat-label>
+                    <input matInput name="email" [(ngModel)]="user.email" placeholder="lane@example.com" disabled>
+                    <mat-icon color="primary" matSuffix>alternate_email</mat-icon>
+                </mat-form-field>
+          
+                <mat-form-field appearance="standard">
+                    <mat-label>{{"label.phone_number" | translate}}</mat-label>
+                    <input matInput [formControl]="phoneNumber" [(ngModel)]="user.phoneNumber" placeholder="{{'placeholder.phone_number' | translate}}">
+                    <mat-icon color="primary" matSuffix>local_phone</mat-icon>
+
+                    <mat-error *ngIf="phoneNumber.invalid">{{getPhoneNumberErrorMessage()}}</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="standard">
+                    <mat-label>{{"label.password" | translate}}</mat-label>
+                    <input matInput [formControl]="password" placeholder="$0mePa$$word" 
+                    [type]="hidePassword ? 'password' : 'text'" required>
+                    <button type="button" mat-icon-button color="primary" 
+                    matSuffix (click)="hidePassword = !hidePassword"
+                    [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+                        <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                    <mat-error *ngIf="password.invalid">{{getPasswordErrorMessage()}}</mat-error>
+                </mat-form-field>
+          
+                <mat-form-field appearance="standard">
+                    <mat-label>{{"label.password_confirmation" | translate}}</mat-label>
+                    <input matInput [formControl]="passwordConfirmation" placeholder="$0mePa$$word" 
+                    [type]="hidePassword ? 'password' : 'text'" required>
+                    <button type="button" mat-icon-button color="primary" 
+                    matSuffix (click)="hidePassword = !hidePassword"
+                    [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+                      <mat-icon >{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                    <mat-error *ngIf="passwordConfirmation.invalid">{{getPasswordConfirmationErrorMessage()}}</mat-error>
+                </mat-form-field>
+                <mat-error *ngIf="passwordConfirmation.touched && form.hasError('passwordsNotMatching')">
+                    <small>Passwords not matching</small>
+                </mat-error>
+                
+                <button type="submit" color="accent" mat-flat-button>
+                    {{"button.update" | translate}}
+                </button>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

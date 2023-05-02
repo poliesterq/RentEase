@@ -1,0 +1,24 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-main {
+    margin-right: 7em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+img {
+    padding: 5px;
+    width: 55em;
+}
+
+button {
+    width: 10em;
+}
