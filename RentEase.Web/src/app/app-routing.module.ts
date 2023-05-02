@@ -8,6 +8,7 @@ import { AuthenticationGuard } from './guards/authentication.quard';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { UnauthorizedComponent } from './errors/unauthorized/unauthorized.component';
 import { ForbiddenComponent } from './errors/forbidden/forbidden.component';
+import { CreateItemComponent } from './item/create-item/create-item.component';
 
 const routes: Routes = [
   { path: 'home', component: HomePageComponent },
@@ -18,12 +19,18 @@ const routes: Routes = [
       { path: "details", component: DetailsComponent, canActivate: [AuthenticationGuard]}
     ]
   },
+  { path: 'item',
+    children: [
+      { path: 'create', component: CreateItemComponent, canActivate: [AuthenticationGuard]}
+    ]
+  },
 
   { path: 'notfound', component: NotFoundComponent },
   { path: 'unauthorized', component: UnauthorizedComponent },
   { path: 'forbidden', component: ForbiddenComponent },
 
   { path: '', redirectTo: 'home', pathMatch: 'full'},
+  { path: '**', redirectTo: 'notfound', pathMatch: 'full' }
 ];
 
 @NgModule({

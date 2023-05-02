@@ -29,6 +29,9 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSidenavModule } from "@angular/material/sidenav";
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { UnauthorizedComponent } from './errors/unauthorized/unauthorized.component';
@@ -39,6 +42,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { LoginComponent } from './account/login/login.component';
 import { RegistrationComponent } from './account/registration/registration.component';
 import { DetailsComponent } from './account/details/details.component';
+import { CreateItemComponent } from './item/create-item/create-item.component';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http);
@@ -60,7 +64,8 @@ export function tokenGetter(){
 
     LoginComponent,
     RegistrationComponent,
-    DetailsComponent
+    DetailsComponent,
+    CreateItemComponent
    ],
   imports: [
     BrowserModule,
@@ -90,6 +95,9 @@ export function tokenGetter(){
     MatTableModule,
     MatTooltipModule,
     MatSidenavModule,
+    MatStepperModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
 
     JwtModule.forRoot({
       config: {

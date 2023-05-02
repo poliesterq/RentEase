@@ -13,11 +13,28 @@
         "to_registration": "До реєстрації",
         "registration": "Зареєструватися",
         "to_login": "До входу",
-        "update": "Оновити"
+        "update": "Оновити",
+        "create": "Створити"
     },
     "title": {
         "login": "Вхід",
-        "registration": "Регістрація"
+        "registration": "Регістрація",
+        "item_create": "Створити товар"
+    },
+    "item": {
+        "text": {
+            "info": "Заповність інформацію про товар",
+            "category": "Оберить категорію товара",
+            "details": "Заповніть деталі товару",
+            "done": "Готово",
+            "done_detailed": "Ви закінчили."
+        },
+        "placeholder": {
+            "title": "Велосипед",
+            "description": "Легкий та маневрений велосипед для міських поїздок",
+            "price": "20",
+            "address": "Україна, Харків, вул. Сумська 20"
+        }
     },
     "placeholder": {
         "first_name": "Джейн",
@@ -33,7 +50,13 @@
         "first_name": "Ім'я",
         "last_name": "Прізвище",
         "phone_number": "Телефон",
-        "birthdate": "Дата народження"
+        "birthdate": "Дата народження",
+        "title": "Назва",
+        "description": "Опис",
+        "category": "Катергорія",
+        "priceUS": "Ціна, $",
+        "address": "Адреса",
+        "image": "Зображення"
     },
     "home-page": {
         "title": "Ласкаво просимо до RentEase!",

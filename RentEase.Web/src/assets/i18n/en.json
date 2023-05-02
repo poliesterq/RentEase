@@ -13,11 +13,28 @@
         "to_registration": "Go to registration",
         "registration": "Registration",
         "to_login": "To login",
-        "update": "Update"
+        "update": "Update",
+        "create": "Create"
     },
     "title": {
         "login": "Login",
-        "registration": "Registration"
+        "registration": "Registration",
+        "item_create": "Create item"
+    },
+    "item": {
+        "text": {
+            "info": "Fill out item's information",
+            "category": "Choose item's category",
+            "details": "Fill out item's details",
+            "done": "Done",
+            "done_detailed": "You are now done."
+        },
+        "placeholder": {
+            "title": "Bike",
+            "description": "Lightweight and agile bike for city rides",
+            "price": "20",
+            "address": "USA, New York, 1 Main St"
+        }
     },
     "placeholder": {
         "first_name": "Jane",
@@ -33,7 +50,13 @@
         "first_name": "First name",
         "last_name": "Last name",
         "phone_number": "Phone number",
-        "birthdate": "Birthdate"
+        "birthdate": "Birthdate",
+        "title": "Title",
+        "description": "Description",
+        "category": "Category",
+        "priceUS": "Prise, $",
+        "address": "Address",
+        "image": "Image"
     },
     "home-page": {
         "title": "Welcome to RentEase!",

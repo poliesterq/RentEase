@@ -1,0 +1,34 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 3em 3em 3em;
+}
+
+mat-form-field {
+    min-width: 600px;
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+button {
+    justify-self: center;
+    width: 100%;
+}
+
+.radio-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+    margin-bottom: 1em;
+}
+  
+.radio-button {
+    margin: 5px;
+}
