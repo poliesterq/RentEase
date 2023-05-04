@@ -44,7 +44,6 @@ export class DetailsItemComponent implements OnInit {
 
     this.itemService.getById(this.itemId).subscribe(item => {
       this.item = item;
-      console.log(item)
     });
   }
 

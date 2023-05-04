@@ -1,0 +1,133 @@
+<div class="container">
+  <h1>{{ "title.item_edit" | translate }}</h1>
+  <h3>{{ item.title }}</h3>
+  <mat-card>
+    <mat-card-content>
+      <mat-stepper orientation="vertical" #stepper>
+        <mat-step [stepControl]="firstFormGroup">
+          <form [formGroup]="firstFormGroup">
+            <ng-template matStepLabel>{{
+              "item.text.info" | translate
+            }}</ng-template>
+
+            <mat-form-field appearance="outline">
+              <mat-label>{{ "label.title" | translate }}</mat-label>
+              <input
+                matInput
+                [(ngModel)]="item.title"
+                placeholder="{{ 'item.placeholder.title' | translate }}"
+                [formControl]="title"
+                required
+              />
+              <mat-error *ngIf="title.invalid">{{
+                getTitleErrorMessage()
+              }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>{{ "label.description" | translate }}</mat-label>
+              <input
+                matInput
+                [(ngModel)]="item.description"
+                placeholder="{{ 'item.placeholder.description' | translate }}"
+                [formControl]="description"
+                required
+              />
+              <mat-error *ngIf="description.invalid">{{
+                getDescriptionErrorMessage()
+              }}</mat-error>
+            </mat-form-field>
+          </form>
+        </mat-step>
+
+        <mat-step
+          [stepControl]="secondFormGroup"
+          label="{{ 'item.text.category' | translate }}"
+        >
+          <form [formGroup]="secondFormGroup">
+            <label id="category-label">{{
+              "label.category" | translate
+            }}</label>
+            <mat-radio-group
+              [formControl]="category"
+              aria-labelledby="category-label"
+              class="radio-group"
+            >
+              <mat-radio-button
+                class="radio-button"
+                *ngFor="let category of categories"
+                [value]="category"
+              >
+                {{ Category[category] }}
+              </mat-radio-button>
+            </mat-radio-group>
+          </form>
+        </mat-step>
+
+        <mat-step
+          [stepControl]="thirdFormGroup"
+          label="{{ 'item.text.details' | translate }}"
+        >
+          <form [formGroup]="thirdFormGroup">
+            <mat-form-field appearance="outline">
+              <mat-label>{{ "label.priceUS" | translate }}</mat-label>
+              <input
+                matInput
+                [(ngModel)]="item.priceUS"
+                placeholder="{{ 'item.placeholder.price' | translate }}"
+                [formControl]="priceUS"
+                required
+              />
+              <mat-error *ngIf="priceUS.invalid">{{
+                getPriceErrorMessage()
+              }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>{{ "label.address" | translate }}</mat-label>
+              <input
+                matInput
+                [(ngModel)]="item.address"
+                placeholder="{{ 'item.placeholder.address' | translate }}"
+                [formControl]="address"
+                required
+              />
+              <mat-error *ngIf="address.invalid">{{
+                getAddressErrorMessage()
+              }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>{{ "label.image" | translate }}</mat-label>
+              <input
+                matInput
+                [(ngModel)]="item.imageUrl"
+                placeholder=""
+                [formControl]="imageUrl"
+                required
+              />
+              <mat-error *ngIf="imageUrl.invalid">{{
+                getImageErrorMessage()
+              }}</mat-error>
+            </mat-form-field>
+            <img
+            mat-card-image
+            src="{{ item.imageUrl }}"
+            onerror="'src/assets/images/default-image.jpg'"
+            alt="Photo of the item"
+            />
+          </form>
+        </mat-step>
+
+        <mat-step>
+          <ng-template matStepLabel>{{
+            "item.text.done" | translate
+          }}</ng-template>
+        </mat-step>
+      </mat-stepper>
+      <button mat-button color="primary" (click)="create()">
+        {{ "button.edit" | translate }}
+      </button>
+    </mat-card-content>
+  </mat-card>
+</div>

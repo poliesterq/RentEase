@@ -22,9 +22,10 @@
         "login": "Вхід",
         "registration": "Регістрація",
         "item_create": "Створити товар",
+        "item_edit": "Редагувати",
         "information": "Інформація",
         "landlord": "Орендодавець",
-        "reserved_dates": "Заброновані дати"
+        "reserved_dates": "Заброньовані дати"
     },
     "item": {
         "text": {

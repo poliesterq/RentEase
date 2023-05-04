@@ -23,6 +23,7 @@
         "login": "Login",
         "registration": "Registration",
         "item_create": "Create item",
+        "item_edit": "Edit",
         "information": "Information",
         "landlord": "Landlord",
         "reserved_dates": "Reserved dates"

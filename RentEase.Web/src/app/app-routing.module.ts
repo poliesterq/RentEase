@@ -10,6 +10,7 @@ import { UnauthorizedComponent } from './errors/unauthorized/unauthorized.compon
 import { ForbiddenComponent } from './errors/forbidden/forbidden.component';
 import { CreateItemComponent } from './item/create-item/create-item.component';
 import { DetailsItemComponent } from './item/details-item/details-item.component';
+import { EditItemComponent } from './item/edit-item/edit-item.component';
 
 const routes: Routes = [
   { path: 'home', component: HomePageComponent },
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'item',
     children: [
       { path: 'create', component: CreateItemComponent, canActivate: [AuthenticationGuard]},
+      { path: 'edit/:id', component: EditItemComponent, canActivate: [AuthenticationGuard]},
       { path: ':id', component: DetailsItemComponent }
     ]
   },
