@@ -14,12 +14,18 @@
         "registration": "Registration",
         "to_login": "To login",
         "update": "Update",
-        "create": "Create"
+        "create": "Create",
+        "delete": "Delete",
+        "order": "Order"
+
     },
     "title": {
         "login": "Login",
         "registration": "Registration",
-        "item_create": "Create item"
+        "item_create": "Create item",
+        "information": "Information",
+        "landlord": "Landlord",
+        "reserved_dates": "Reserved dates"
     },
     "item": {
         "text": {
@@ -55,6 +61,7 @@
         "description": "Description",
         "category": "Category",
         "priceUS": "Prise, $",
+        "priceUA": "Prise, ₴",
         "address": "Address",
         "image": "Image"
     },
@@ -63,5 +70,19 @@
         "paragraph1": "We are your go-to online platform for all your rental needs. Whether you need a car for a road trip, a laptop for a work assignment, or equipment for your DIY project, Rent Ease has got you covered.",
         "paragraph2": "With RentEase, you can easily browse and compare rental options from various locations around the world. We work with trusted partners to ensure that you get the best rental experience possible. Our user-friendly platform makes it easy for you to book rentals at your convenience. Simply search for what you need, choose the location and rental dates, and book with just a few clicks.",
         "paragraph3": "At RentEase, we believe in making renting easy and accessible for everyone. Start exploring our wide range of rental options today and find exactly what you need, wherever you need it."
+    },
+    "error": {
+        "forbidden": {
+            "title": "Oops! Page not found",
+            "description": "we are sorry, you do not have access to this page"
+        },
+        "not_found": {
+            "title": "Oops! Page not found",
+            "description": "we are sorry, but the page you requested was not found"
+        },
+        "unauthorized": {
+            "title": "Oops! Page not found",
+            "description": "we are sorry, you should authorized to get page"
+        }
     }
 }

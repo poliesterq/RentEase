@@ -9,6 +9,7 @@ import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { UnauthorizedComponent } from './errors/unauthorized/unauthorized.component';
 import { ForbiddenComponent } from './errors/forbidden/forbidden.component';
 import { CreateItemComponent } from './item/create-item/create-item.component';
+import { DetailsItemComponent } from './item/details-item/details-item.component';
 
 const routes: Routes = [
   { path: 'home', component: HomePageComponent },
@@ -21,7 +22,8 @@ const routes: Routes = [
   },
   { path: 'item',
     children: [
-      { path: 'create', component: CreateItemComponent, canActivate: [AuthenticationGuard]}
+      { path: 'create', component: CreateItemComponent, canActivate: [AuthenticationGuard]},
+      { path: ':id', component: DetailsItemComponent }
     ]
   },
 

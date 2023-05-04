@@ -3,7 +3,8 @@ import { Order } from "./order";
 import { User } from "./user";
 
 export class Item {
-    id?:number;
+    id:number;
+    title:string;
     description:string;
     category:Category;
     priceUS:number;

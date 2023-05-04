@@ -23,7 +23,7 @@ export class CreateItemComponent implements OnInit {
     ) {}
     
   language = (localStorage.getItem("lang") || 'en') == 'en' ? 'English' : 'Українська';
-  landlordId = localStorage.getItem("id");
+  userId = localStorage.getItem("id");
 
   Category = Category;
   categories:Category[] = [Category.Fashion, Category.Electronic, Category.Toy, 
@@ -58,7 +58,7 @@ export class CreateItemComponent implements OnInit {
         priceUS: this.priceUS.value,
         address: this.address.value,
         imageUrl: this.imageUrl.value,
-        landlordId: this.landlordId,
+        landlordId: this.userId,
         isAvaiable: true
       };
 

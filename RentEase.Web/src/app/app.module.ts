@@ -43,6 +43,7 @@ import { LoginComponent } from './account/login/login.component';
 import { RegistrationComponent } from './account/registration/registration.component';
 import { DetailsComponent } from './account/details/details.component';
 import { CreateItemComponent } from './item/create-item/create-item.component';
+import { DetailsItemComponent } from './item/details-item/details-item.component';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http);
@@ -65,7 +66,8 @@ export function tokenGetter(){
     LoginComponent,
     RegistrationComponent,
     DetailsComponent,
-    CreateItemComponent
+    CreateItemComponent,
+    DetailsItemComponent
    ],
   imports: [
     BrowserModule,
