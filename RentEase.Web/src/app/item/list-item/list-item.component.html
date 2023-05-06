@@ -28,11 +28,6 @@
           </div>
         </section>
         
-        <!-- <section class="example-section">
-          <h4>Selected categories:</h4>
-          {{ getSelectedCategories() | json }}
-        </section> -->
-        
         <p>{{ "label.priceUS" | translate }}</p>
         <mat-slider min="0" [max]="itemMaxPrice" [discrete]="true" [step]="10">
           <input [formControl]="priceMinUS" [value]="0" matSliderStartThumb>
