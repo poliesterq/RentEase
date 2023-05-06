@@ -25,13 +25,14 @@
             [max]="1000"
             [min]="0"
             [step]="20"
+            [thumbLabel]="true"
             >
-            <input [formControl]="priceMinUS" value="priceMinUS" matSliderStartThumb>
-            <input  [formControl]="priceMaxUS" value="priceMaxUS"  matSliderEndThumb>
+            <!-- <input [formControl]="priceMinUS" value="priceMinUS" matSliderStartThumb>
+            <input  [formControl]="priceMaxUS" value="priceMaxUS"  matSliderEndThumb> -->
 
         </mat-slider>
 
-        <mat-slider min="200" max="500" [(ngModel)]="rangeValues">
+        <mat-slider min="200" max="500" [(ngModel)]="rangeValues" [thumbLabel]="true">
           <!-- <input value="300" matSliderStartThumb>
           <input value="400" matSliderEndThumb> -->
         </mat-slider>
@@ -132,7 +133,7 @@
               [src]="
                 item.imageUrl
                   ? item.imageUrl
-                  : '..assets/images/default-image.jpg'
+                  : 'assets/images/default-image.jpg'
               "
               alt="Photo of the item"
             />
