@@ -114,7 +114,7 @@ export class ListItemComponent implements OnInit {
     let categoriesLength = categories.length;
 
     if (categories && categoriesLength) {
-      params.categories = this.getSelectedCategories();
+      params.categories = categories;
     }
     if (this.address.value) {
       params.address = this.address.value;

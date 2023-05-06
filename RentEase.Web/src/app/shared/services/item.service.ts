@@ -4,65 +4,76 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Item } from '../models/item';
+import { ItemSearchParameters } from '../models/item-search-parameters';
+import { Category } from '../enums/category.enum';
 
 @Injectable({
   providedIn: 'root',
 })
+
 export class ItemService {
   constructor(private http: HttpClient, private route: ActivatedRoute) {}
 
   readonly baseUrl = environment.baseUrl + 'Item';
+  Category = Category;
 
+  categoryMapping: { [key: string]: Category } = {
+    Fashion: Category.Fashion,
+    Electronic: Category.Electronic,
+    Toy: Category.Toy,
+    Hobby: Category.Hobby,
+    Beauty: Category.Beauty,
+    Health: Category.Health,
+    Sport: Category.Sport,
+    Household: Category.Household,
+    Furniture: Category.Furniture,
+    Transport: Category.Transport,
+    Travel: Category.Travel,
+    Work: Category.Work,
+  };
+  
   getAll(): Observable<Item[]> {
+    let searchParameter:ItemSearchParameters = new ItemSearchParameters();
     let httpParams = new HttpParams();
 
     this.route.queryParams.subscribe((queryParams) => {
       if (!!queryParams['searchParameter']) {
-        httpParams = httpParams.append(
-          'SearchParameter',
-          queryParams['searchParameter']
-        );
+        searchParameter.searchParameter = queryParams['searchParameter'];
       }
     });
     this.route.queryParams.subscribe((queryParams) => {
       if (!!queryParams['categories']) {
-        const categories = Array.isArray(queryParams['categories'])
-          ? queryParams['categories']
-          : [queryParams['categories']];
-        const categoriesParam = categories.join('&');
-        httpParams = httpParams.append('Categories', categoriesParam);
+        let categories = queryParams['categories'].map((value:number) => this.categoryMapping[value]);
+        searchParameter.categories = categories;
       }
     });
     this.route.queryParams.subscribe((queryParams) => {
       if (!!queryParams['address']) {
-        httpParams = httpParams.append('Address', queryParams['address']);
+        searchParameter.address = queryParams['address'];
       }
     });
     this.route.queryParams.subscribe((queryParams) => {
       if (!!queryParams['priceMinUS']) {
-        httpParams = httpParams.append('PriceMinUS', queryParams['priceMinUS']);
+        searchParameter.priceMinUS = queryParams['priceMinUS'];
       }
     });
     this.route.queryParams.subscribe((queryParams) => {
       if (!!queryParams['priceMaxUS']) {
-        httpParams = httpParams.append('PriceMaxUS', queryParams['priceMaxUS']);
+        searchParameter.priceMaxUS = queryParams['priceMaxUS'];
       }
     });
     this.route.queryParams.subscribe((queryParams) => {
       if (!!queryParams['landlordId']) {
-        httpParams = httpParams.append('LandlordId', queryParams['landlordId']);
+        searchParameter.landlordId = queryParams['landlordId'];
       }
     });
     this.route.queryParams.subscribe((queryParams) => {
       if (!!queryParams['isAvailable']) {
-        httpParams = httpParams.append(
-          'IsAvailable',
-          queryParams['isAvailable']
-        );
+       searchParameter.isAvailable = queryParams['isAvailable'];
       }
     });
 
-    return this.http.get<Item[]>(this.baseUrl, { params: httpParams });
+    return this.http.post<Item[]>(`${this.baseUrl}/GetList`, searchParameter);
   }
 
   getById(id: number): Observable<Item> {
@@ -70,7 +81,7 @@ export class ItemService {
   }
 
   add(Item: Item): Observable<Item> {
-    return this.http.post<Item>(this.baseUrl, Item);
+    return this.http.post<Item>(`${this.baseUrl}/Create`, Item);
   }
 
   edit(Item: Item): Observable<boolean> {
