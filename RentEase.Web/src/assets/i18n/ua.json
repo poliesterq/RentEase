@@ -25,7 +25,10 @@
         "item_edit": "Редагувати",
         "information": "Інформація",
         "landlord": "Орендодавець",
-        "reserved_dates": "Заброньовані дати"
+        "reserved_dates": "Заброньовані дати",
+        "search": "Пошук",
+        "items": "Товари"
+
     },
     "item": {
         "text": {
@@ -60,10 +63,12 @@
         "title": "Назва",
         "description": "Опис",
         "category": "Катергорія",
+        "categories": "Катергорії",
         "priceUS": "Ціна, $",
         "priceUA": "Ціна, ₴",
         "address": "Адреса",
-        "image": "Зображення"
+        "image": "Зображення",
+        "item": "Товар"
     },
     "home-page": {
         "title": "Ласкаво просимо до RentEase!",

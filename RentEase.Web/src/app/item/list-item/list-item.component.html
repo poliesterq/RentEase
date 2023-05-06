@@ -1,6 +1,6 @@
 <div class="container">
   <div class="container-title">
-    <h1>{{ "title.vacancies" | translate }}</h1>
+    <h1>{{ "title.items" | translate }}</h1>
     <button
       *ngIf="role === Role[Role.User]"
       class="button-add"
@@ -9,11 +9,11 @@
       [routerLink]="['/item/create']"
     >
       <mat-icon>add_circle_outline</mat-icon>
-      {{ "title.vacancy" | translate }}
+      {{ "label.item" | translate }}
     </button>
   </div>
-  <div class="container-vacancy">
-    <div class="container-vacancy-filter">
+  <div class="container-item">
+    <div class="container-item-filter">
       <form (ngSubmit)="filter()">
         <mat-form-field appearance="outline">
           <mat-label>{{ "title.search" | translate }}</mat-label>
@@ -21,71 +21,23 @@
           <input matInput [formControl]="search" placeholder="Eindhoven" />
         </mat-form-field>
 
-        <mat-slider
-            [max]="1000"
-            [min]="0"
-            [step]="20"
-            [thumbLabel]="true"
-            >
-            <!-- <input [formControl]="priceMinUS" value="priceMinUS" matSliderStartThumb>
-            <input  [formControl]="priceMaxUS" value="priceMaxUS"  matSliderEndThumb> -->
-
+        <section [formGroup]="categoriesForm">
+          <p>{{ "label.categories" | translate }}</p>
+          <div *ngFor="let category of categoriesInit">
+            <mat-checkbox [formControlName]="category.toString()">{{ Category[category] }}</mat-checkbox>
+          </div>
+        </section>
+        
+        <!-- <section class="example-section">
+          <h4>Selected categories:</h4>
+          {{ getSelectedCategories() | json }}
+        </section> -->
+        
+        <p>{{ "label.priceUS" | translate }}</p>
+        <mat-slider min="0" [max]="itemMaxPrice" [discrete]="true" [step]="10">
+          <input [formControl]="priceMinUS" [value]="0" matSliderStartThumb>
+          <input [formControl]="priceMaxUS" [value]="3" matSliderEndThumb>
         </mat-slider>
-
-        <mat-slider min="200" max="500" [(ngModel)]="rangeValues" [thumbLabel]="true">
-          <!-- <input value="300" matSliderStartThumb>
-          <input value="400" matSliderEndThumb> -->
-        </mat-slider>
-     
-        <mat-form-field appearance="outline">
-          <mat-label>{{ "title.min_sal" | translate }}</mat-label>
-          <mat-icon color="primary" matSuffix>attach_money</mat-icon>
-          <input matInput [formControl]="priceMinUS" placeholder="200" />
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-          <mat-label>{{ "title.min_sal" | translate }}</mat-label>
-          <mat-icon color="primary" matSuffix>attach_money</mat-icon>
-          <input matInput [formControl]="priceMaxUS" placeholder="200" />
-        </mat-form-field>
-
-        <!-- <label id="specialism-label">{{
-          "title.specialism" | translate
-        }}</label>
-        <mat-checkbox-group
-          [formControl]="categories"
-          aria-labelledby="specialism-label"
-          class="checkbox-group"
-        >
-          <mat-checkbox
-            class="checkbox"
-            *ngFor="let category of categoriesInit"
-            [value]="category"
-          >
-            {{ Category[category] }}
-          </mat-checkbox>
-          <mat-checkbox class="checkbox" [value]="null" checked="true"
-            >none</mat-checkbox
-          >
-        </mat-checkbox-group> -->
-
-        <!-- <label id="remote-label">{{ "title.is_remote" | translate }}</label>
-        <mat-radio-group
-          [formControl]="isRemote"
-          aria-labelledby="remote-label"
-          class="radio-group"
-        >
-          <mat-radio-button
-            class="radio-button"
-            *ngFor="let type of remote"
-            [value]="type"
-          >
-            {{ type ? "Remote" : "Pense" }}
-          </mat-radio-button>
-          <mat-radio-button class="radio-button" [value]="null" checked="true"
-            >none</mat-radio-button
-          >
-        </mat-radio-group> -->
 
         <button type="submit" color="accent" mat-flat-button>
           {{ "title.search" | translate }}
@@ -99,7 +51,7 @@
 
   <ng-template #itemList>
     <div>
-      <div class="container-vacancy-list">
+      <div class="container-item-list">
         <mat-card
           class="card-item"
           *ngFor="let item of items"
@@ -133,8 +85,9 @@
               [src]="
                 item.imageUrl
                   ? item.imageUrl
-                  : 'assets/images/default-image.jpg'
+                  : '..assets/images/default-image.jpg'
               "
+              onerror="'..assets/images/default-image.jpg'"
               alt="Photo of the item"
             />
 

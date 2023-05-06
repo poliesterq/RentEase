@@ -64,4 +64,10 @@ public class ItemController : ControllerBase
         var result = await _itemService.Delete(id);
         return result ? Ok() : NotFound();
     }
+
+    [HttpGet("MaxPriceUS")]
+    public async Task<IActionResult> MaxPrice()
+    {
+        return Ok(await _itemService.MaxPrice());
+    }
 }

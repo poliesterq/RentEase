@@ -1,41 +1,57 @@
 <mat-toolbar color="primary">
-  <img [routerLink]="['/home']" src="..\assets\images\logo.png" alt="Logo picture">
+  <img
+    [routerLink]="['/home']"
+    src="..\assets\images\logo.png"
+    alt="Logo picture"
+  />
 
   <a mat-stroked-button [routerLink]="['/item']">
-    {{"navbar.items" | translate}}
+    {{ "navbar.items" | translate }}
   </a>
   <a mat-stroked-button [routerLink]="['/company']">
-    {{"navbar.orders" | translate}}
+    {{ "navbar.orders" | translate }}
   </a>
 
   <span class="spacer"></span>
-  
-  <mat-select class="language" [(ngModel)]="language"> 
-    <mat-option *ngFor="let language of languages" [value]="language" (click)="changeLanguage(language)">
-      {{language}}
+
+  <mat-select class="language" [(ngModel)]="language">
+    <mat-option
+      *ngFor="let language of languages"
+      [value]="language"
+      (click)="changeLanguage(language)"
+    >
+      {{ language }}
     </mat-option>
   </mat-select>
 
-  <button 
-  *ngIf="role === Role[Role.User]"
-  mat-icon-button [routerLink]="['/chat']">
+  <button
+    *ngIf="role === Role[Role.User]"
+    mat-icon-button
+    [routerLink]="['/chat']"
+  >
     <mat-icon>
       <!-- [matBadge]="countUnread" matBadgeColor="accent" [matBadgeHidden]="countUnread == 0" -->
       mail
     </mat-icon>
   </button>
 
-  <button *ngIf="!isLoggedIn" mat-stroked-button [routerLink]="['/account/login']">
-    <mat-icon color='accent'>login</mat-icon>
-    {{"navbar.login" | translate}}
+  <button
+    *ngIf="!isLoggedIn"
+    mat-stroked-button
+    [routerLink]="['/account/login']"
+  >
+    <mat-icon color="accent">login</mat-icon>
+    {{ "navbar.login" | translate }}
   </button>
-  <button 
-  *ngIf="role === Role[Role.User]"
-  mat-stroked-button [routerLink]="['/account/details']">
+  <a
+    *ngIf="role === Role[Role.User]"
+    mat-stroked-button
+    [routerLink]="['/account/details']"
+  >
     <mat-icon aria-hidden="false" svgIcon="user"></mat-icon>
-    {{"navbar.profile" | translate}}
-  </button>
+    {{ "navbar.profile" | translate }}
+  </a>
   <button *ngIf="isLoggedIn" mat-icon-button color="accent" (click)="logOut()">
-    <mat-icon color='accent'>logout</mat-icon>
+    <mat-icon color="accent">logout</mat-icon>
   </button>
 </mat-toolbar>
