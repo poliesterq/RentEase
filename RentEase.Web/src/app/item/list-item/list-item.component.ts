@@ -77,9 +77,7 @@ export class ListItemComponent implements OnInit {
       const controlName = category.toString();
       this.categoriesForm.addControl(controlName, this.formBuilder.control(false));
     });
-
-    console.log(this.categoriesForm)
-
+    
     this.getAll();
   }
 
