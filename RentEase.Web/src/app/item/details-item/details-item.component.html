@@ -8,8 +8,10 @@
 
       <img
         mat-card-image
-        src="{{ item.imageUrl }}"
-        onerror="'src/assets/images/default-image.jpg'"
+        [src]="
+          item.imageUrl ? item.imageUrl : 'assets/images/default-image.jpg'
+        "
+        onerror="'assets/images/default-image.jpg'"
         alt="Photo of the item"
       />
     </mat-card>
@@ -26,7 +28,7 @@
             <mat-icon color="primary"> location_on </mat-icon>
             {{ item.address }}
           </p>
-          <p *ngIf="language == 'en'">
+          <p>
             <mat-icon color="primary" svgIcon="us"></mat-icon>
             {{ item.priceUS }}
           </p>
@@ -37,7 +39,10 @@
         </mat-card-content>
       </mat-card>
 
-      <mat-card>
+      <mat-card
+        [routerLink]="['/profile/:id']"
+        [queryParams]="{ id: item.landlordId }"
+      >
         <mat-card-title> {{ "title.landlord" | translate }} </mat-card-title>
         <mat-card-content>
           <p>{{ item.landlord?.lastName }} {{ item.landlord?.firstName }}</p>

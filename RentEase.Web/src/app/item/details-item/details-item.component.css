@@ -63,3 +63,8 @@ mat-card-footer {
   margin-left: 1.1em;
   margin-bottom: 0.1em;
 }
+
+p mat-icon{
+  vertical-align: middle;
+  margin-right: 5px;
+}

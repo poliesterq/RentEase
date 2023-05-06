@@ -32,6 +32,8 @@ import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSliderModule } from '@angular/material/slider';
 
 import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { UnauthorizedComponent } from './errors/unauthorized/unauthorized.component';
@@ -45,6 +47,7 @@ import { DetailsComponent } from './account/details/details.component';
 import { CreateItemComponent } from './item/create-item/create-item.component';
 import { DetailsItemComponent } from './item/details-item/details-item.component';
 import { EditItemComponent } from './item/edit-item/edit-item.component';
+import { ListItemComponent } from './item/list-item/list-item.component';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http);
@@ -69,7 +72,8 @@ export function tokenGetter(){
     DetailsComponent,
     CreateItemComponent,
     DetailsItemComponent,
-    EditItemComponent
+    EditItemComponent,
+    ListItemComponent
    ],
   imports: [
     BrowserModule,
@@ -102,6 +106,8 @@ export function tokenGetter(){
     MatStepperModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatCheckboxModule,
+    MatSliderModule,
 
     JwtModule.forRoot({
       config: {
