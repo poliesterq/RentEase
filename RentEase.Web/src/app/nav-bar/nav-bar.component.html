@@ -1,5 +1,5 @@
 <mat-toolbar color="primary">
-  <img src="..\assets\images\logo.png" alt="Logo picture">
+  <img [routerLink]="['/home']" src="..\assets\images\logo.png" alt="Logo picture">
 
   <a mat-stroked-button [routerLink]="['/item']">
     {{"navbar.items" | translate}}
