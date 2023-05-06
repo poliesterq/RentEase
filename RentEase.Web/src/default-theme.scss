@@ -15,8 +15,7 @@ $bright-navy-blue-palette: (
   A200: #addcff,
   A400: #1f9eff,
   A700: #00518f,
-  contrast: (
-    50: rgba(black, 0.87),
+  contrast: (50: rgba(black, 0.87),
     100: rgba(black, 0.87),
     200: rgba(black, 0.87),
     300: rgba(black, 0.87),
@@ -47,8 +46,7 @@ $gainsboro-palette: (
   A200: #eaeaeb,
   A400: #d6d6d7,
   A700: #838386,
-  contrast: (
-    50: rgba(black, 0.87),
+  contrast: (50: rgba(black, 0.87),
     100: rgba(rgb(255, 255, 255), 0.87),
     200: rgba(black, 0.87),
     300: rgba(rgb(255, 255, 255), 0.87),
@@ -75,8 +73,7 @@ $crimson-palette: (
   700: #d72638,
   800: #ca1e30,
   900: #bb0d24,
-  contrast: (
-    50: rgba(black, 0.87),
+  contrast: (50: rgba(black, 0.87),
     100: rgba(black, 0.87),
     200: rgba(black, 0.87),
     300: rgba(black, 0.87),
@@ -91,11 +88,10 @@ $crimson-palette: (
 $bluesky-primary: mat.define-palette($bright-navy-blue-palette, 700, 300, 900);
 $bluesky-accent: mat.define-palette($gainsboro-palette, 300, 100, 500);
 $bluesky-warn: mat.define-palette($crimson-palette, 700);
-$bluesky-theme: mat.define-light-theme((
-  color: (
-    primary: $bluesky-primary,
-    accent: $bluesky-accent,
-    warn: $bluesky-warn,
-  )
-));
+$bluesky-theme: mat.define-light-theme((color: (primary: $bluesky-primary,
+        accent: $bluesky-accent,
+        warn: $bluesky-warn,
+      ),
+      typography: mat.define-typography-config(),
+      density: 0));
 @include mat.all-component-themes($bluesky-theme);

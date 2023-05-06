@@ -83,7 +83,7 @@ label {
     margin-top: 1em;
 }
 
-.mat-card-image {
+img {
     max-height: 15em;
     width: fit-content;
     border-radius: 5px;

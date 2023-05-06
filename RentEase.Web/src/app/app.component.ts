@@ -9,7 +9,7 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'RentEase.Web';
+  title = 'rent-ease-web';
 
   constructor(
     private iconRegistry: MatIconRegistry,
