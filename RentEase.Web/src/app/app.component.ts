@@ -9,15 +9,23 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'RentEase.Web';
+  title = 'rent-ease-web';
 
   constructor(
     private iconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer
     ) {
-        this.iconRegistry.addSvgIcon(
+      this.iconRegistry.addSvgIcon(
       `user`,
-      this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/images/user.svg")
-    );
+        this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/images/user.svg"));
+      this.iconRegistry.addSvgIcon(
+        `uah`,
+        this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/images/uah.svg"));
+      this.iconRegistry.addSvgIcon(
+        `dollar`,
+        this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/images/dollar.svg"));
+      this.iconRegistry.addSvgIcon(
+        `us`,
+        this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/images/us.svg"));
   }
 }

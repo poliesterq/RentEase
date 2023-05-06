@@ -1,0 +1,100 @@
+<div class="container">
+  <div class="container-content">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title> {{ item.title }} </mat-card-title>
+        <mat-card-subtitle> {{ Category[item.category] }}</mat-card-subtitle>
+      </mat-card-header>
+
+      <img
+        mat-card-image
+        [src]="
+          item.imageUrl ? item.imageUrl : '..assets/images/default-image.jpg'
+        "
+        onerror="'..assets/images/default-image.jpg'"
+        alt="Photo of the item"
+      />
+    </mat-card>
+
+    <div class="container-content-addition">
+      <mat-card>
+        <mat-card-title> {{ "title.information" | translate }} </mat-card-title>
+        <mat-card-content>
+          <p>
+            <mat-icon color="primary"> description </mat-icon>
+            {{ item.description }}
+          </p>
+          <p>
+            <mat-icon color="primary"> location_on </mat-icon>
+            {{ item.address }}
+          </p>
+          <p>
+            <mat-icon color="primary" svgIcon="us"></mat-icon>
+            {{ item.priceUS }}
+          </p>
+          <p *ngIf="language == 'ua'">
+            <mat-icon color="primary" svgIcon="uah"></mat-icon>
+            {{ item.priceUA }}
+          </p>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card
+        [routerLink]="['/profile/:id']"
+        [queryParams]="{ id: item.landlordId }"
+      >
+        <mat-card-title> {{ "title.landlord" | translate }} </mat-card-title>
+        <mat-card-content>
+          <p>{{ item.landlord?.lastName }} {{ item.landlord?.firstName }}</p>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ "title.reserved_dates" | translate }}
+            </mat-panel-title>
+            <mat-panel-description> </mat-panel-description>
+          </mat-expansion-panel-header>
+          <mat-card *ngFor="let order of item.orders">
+            <mat-card-content>
+              {{ order.dateFrom | date : "dd/MM/yy" }} -
+              {{ order.dateTo | date : "dd/MM/yy" }}
+            </mat-card-content>
+          </mat-card>
+        </mat-expansion-panel>
+      </mat-accordion>
+
+      <div
+        *ngIf="!this.role?.includes('Admin') && userId !== item.landlordId"
+        class="container-content-addition-order"
+      >
+        <button
+          mat-flat-button
+          color="accent"
+          [routerLink]="['/otder/create/:itemId']"
+          [queryParams]="{ itemId: item.id }"
+        >
+          {{ "button.order" | translate }}
+        </button>
+      </div>
+
+      <div
+        class="container-content-addition-interaction"
+        *ngIf="this.role?.includes('Admin') || userId === item.landlordId"
+      >
+        <button
+          mat-stroked-button
+          [routerLink]="['/item/edit/:id']"
+          [queryParams]="{ id: item.id }"
+        >
+          {{ "button.edit" | translate }}
+        </button>
+        <button mat-stroked-button color="warn" (click)="delete(item.id)">
+          {{ "button.delete" | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

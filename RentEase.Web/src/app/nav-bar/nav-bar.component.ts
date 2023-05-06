@@ -29,11 +29,6 @@ export class NavBarComponent implements OnInit {
     this.translate.use(localStorage.getItem("lang") || 'en');
   }
 
-  // public routeLinks = [
-  //   { link: "about", name: "About", icon: "dashboard" },
-  //   { link: "locations", name: "Locations", icon: "account_balance" },
-  // ];
-
   logOut(): void {
     localStorage.clear();
     

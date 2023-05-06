@@ -27,6 +27,8 @@ export class RegistrationComponent implements OnInit {
       lastName: new FormControl(null, [Validators.required, Validators.maxLength(50), Validators.pattern("^[A-Za-zА-ЯЄІа-яєі\']+")]),
       email: new FormControl(null, [Validators.required, Validators.email]),
       phoneNumber: new FormControl(null, [Validators.pattern("^[- +()0-9]+")]),
+      birthdate: new FormControl(null, [Validators.required]),
+
       password: new FormControl(null, [
         Validators.required, 
         Validators.pattern(new RegExp("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[_$@$!%^*#?&(){}]){6,}"))
@@ -48,7 +50,7 @@ export class RegistrationComponent implements OnInit {
         lastName: this.lastName.value,
         email: this.email.value,
         phoneNumber: this.phoneNumber.value,
-        role: this.role.value,
+        birthDate: this.birthdate.value,
         password: this.password.value
       };
 
@@ -130,8 +132,8 @@ export class RegistrationComponent implements OnInit {
     return this.form.get('phoneNumber') as FormControl;
   }
   
-  get role():FormControl {
-    return this.form.get('role') as FormControl;
+  get birthdate():FormControl {
+    return this.form.get('birthdate') as FormControl;
   }
 
   get password():FormControl {

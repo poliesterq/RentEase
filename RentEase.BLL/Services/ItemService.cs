@@ -139,4 +139,10 @@ public class ItemService : IItemService
             }
         }
     }
+
+    public async Task<int> MaxPrice()
+    {
+        var items = await _itemRepository.Get();
+        return items.Max<Item>(item => item.PriceUS);
+    }
 }

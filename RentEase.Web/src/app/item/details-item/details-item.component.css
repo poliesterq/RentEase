@@ -1,0 +1,70 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-content {
+  display: flex;
+  flex-direction: row;
+}
+
+.container-content-addition {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container-content-addition mat-card {
+  min-width: 18em;
+}
+
+.container-content-addition-order {
+  display: flex;
+  justify-content: stretch;
+  margin-top: 1em;
+}
+
+.container-content-addition-interaction button
+{   
+    margin-top: 1em;
+    margin-left: 1em;
+}
+
+.mat-card-image {
+  max-height: 35em;
+  width: fit-content;
+  border-radius: 5px;
+  display: block;
+  margin: 0 auto;
+}
+
+mat-card {
+  max-width: 100em;
+  margin: 0 1em 1em;
+}
+
+mat-card-actions {
+  margin: 0.5em;
+}
+
+.mat-card-image {
+  max-width: 30em;
+}
+
+.header-image {
+  background-size: cover;
+  height: 4em;
+  width: 4em;
+}
+
+mat-card-footer {
+  margin-left: 1.1em;
+  margin-bottom: 0.1em;
+}
+
+p mat-icon{
+  vertical-align: middle;
+  margin-right: 5px;
+}

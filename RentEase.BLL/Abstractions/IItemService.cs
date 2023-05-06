@@ -16,4 +16,6 @@ public interface IItemService
     public Task<bool> Delete(int id);
     
     public Task UpdateStatus();
+
+    public Task<int> MaxPrice();
 }

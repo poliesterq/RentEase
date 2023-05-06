@@ -25,9 +25,9 @@ public class ItemController : ControllerBase
         _mapper = mapper;
     }
 
-    [HttpGet]
+    [HttpPost("GetList")]
     [AllowAnonymous]
-    public async Task<IActionResult> Get([FromQuery] ItemSearchParameters itemParameters)
+    public async Task<IActionResult> Get(ItemSearchParameters itemParameters)
     {
         return Ok(await _itemService.Get(itemParameters));
     }
@@ -40,7 +40,7 @@ public class ItemController : ControllerBase
         return item != null ? Ok(item) : NotFound();
     }
 
-    [HttpPost]
+    [HttpPost("Create")]
     [AuthorizeRoles(Role.User)]
     public async Task<IActionResult> Create(ItemDto itemDto)
     {
@@ -63,5 +63,11 @@ public class ItemController : ControllerBase
     {
         var result = await _itemService.Delete(id);
         return result ? Ok() : NotFound();
+    }
+
+    [HttpGet("MaxPriceUS")]
+    public async Task<IActionResult> MaxPrice()
+    {
+        return Ok(await _itemService.MaxPrice());
     }
 }
