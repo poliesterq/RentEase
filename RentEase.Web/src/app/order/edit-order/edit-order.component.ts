@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -9,17 +9,19 @@ import { Item } from 'src/app/shared/models/item';
 import { Order } from 'src/app/shared/models/order';
 import { ItemService } from 'src/app/shared/services/item.service';
 import { OrderService } from 'src/app/shared/services/order.service';
+import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
-  selector: 'app-create-order',
-  templateUrl: './create-order.component.html',
-  styleUrls: ['./create-order.component.css'],
+  selector: 'app-edit-order',
+  templateUrl: './edit-order.component.html',
+  styleUrls: ['./edit-order.component.css']
 })
-export class CreateOrderComponent {
+export class EditOrderComponent {
   constructor(
     private orderService: OrderService,
     private activatedRoute: ActivatedRoute,
-    private itemService: ItemService,
+    private userService: UserService,
+    private itemService:ItemService,
     private snackbar: MatSnackBar,
     private router: Router,
     private translate: TranslateService
@@ -47,13 +49,13 @@ export class CreateOrderComponent {
 
   startDate = Date.now;
 
-  item: Item;
-  itemId: number;
+  order:Order;
+  orderId: number;
 
   form: FormGroup = new FormGroup({
     dateFrom: new FormControl(null, [Validators.required]),
     dateTo: new FormControl(null, [Validators.required]),
-    address: new FormControl(null, [Validators.required]),
+    address: new FormControl(null, [Validators.required])
   });
 
   ngOnInit(): void {
@@ -62,33 +64,41 @@ export class CreateOrderComponent {
     this.translate.use(localStorage.getItem('lang') || 'en');
 
     this.activatedRoute.queryParams.subscribe((params) => {
-      this.itemId = params['itemId'];
+      this.orderId = params['id'];
     });
 
-    this.itemService.getById(this.itemId).subscribe((item) => {
-      this.item = item;
+    this.orderService.getById(this.orderId).subscribe((order) => {
+      this.order = order;
+      this.itemService.getById(order.itemId).subscribe((item) => {
+        this.order.item = item;
+      });
+      this.userService.getById(order.item.landlordId).subscribe((landlord) => {
+        this.order.item.landlord = landlord;
+      });
+      console.log(this.order)
     });
   }
 
-  create(): void {
+  edit(): void {
     if (this.form.valid) {
       let Order: Order = <Order>{
+        id: this.orderId,
         dateFrom: this.dateFrom.value,
         dateTo: this.dateTo.value,
         deliveryAddress: this.address.value,
-        isConfirmed: false,
-        itemId: this.itemId,
+        isConfirmed: this.order.isConfirmed,
+        itemId: this.order.itemId,
         tenantId: this.userId,
       };
 
       this.orderService
-        .add(Order)
+        .edit(Order)
         .pipe(
-          tap((result: Order) => {
+          tap(() => {
             this.router.navigate(['/order/:id'], {
-              queryParams: { id: result.id },
+              queryParams: { id: this.orderId },
             });
-            this.snackbar.open('Order was created succesfuly', 'Close', {
+            this.snackbar.open('Order was updated succesfuly', 'Close', {
               duration: 2000,
               horizontalPosition: 'right',
               verticalPosition: 'top',

@@ -25,6 +25,8 @@
         "registration": "Регістрація",
         "item_create": "Створити товар",
         "item_edit": "Редагувати",
+        "order_create": "Створити замовлення",
+        "order_edit": "Редагувати замовлення",
         "information": "Інформація",
         "landlord": "Орендодавець",
         "tenant": "Орендатор",
@@ -55,6 +57,15 @@
             "created": "Створено",
             "confirmed": "Підтверджено",
             "delivered": "Доставлено"
+        },
+        "label":{
+            "date": "Дата",
+            "address": "Адреса"
+        },
+        "placeholder":{
+            "address": "Україна, Харків, вул. Сумська 20",
+            "date_from": "Початок",
+            "date_to": "Кінець"
         }
     },
     "placeholder": {

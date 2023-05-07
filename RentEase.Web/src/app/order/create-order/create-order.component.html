@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>Create order</h1>
+  <h1>{{ "title.order_create" | translate }}</h1>
   <div class="container-content">
     <mat-card
       class="card-item"
@@ -60,10 +60,10 @@
             <mat-card-content>
               <form (ngSubmit)="create()">
                 <mat-form-field appearance="outline">
-                  <mat-label>Date</mat-label>
+                  <mat-label>{{ 'order.label.date' | translate }}</mat-label>
                   <mat-date-range-input [formGroup]="form" [rangePicker]="picker">
-                    <input matStartDate [formControl]="dateFrom" placeholder="Start date"/>
-                    <input matEndDate [formControl]="dateTo" placeholder="End date" />
+                    <input matStartDate [formControl]="dateFrom" placeholder="{{ 'order.placeholder.date_from' | translate }}"/>
+                    <input matEndDate [formControl]="dateTo" placeholder="{{ 'order.placeholder.date_to' | translate }}" />
                   </mat-date-range-input>
                   <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
                   <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
@@ -73,18 +73,18 @@
                   <mat-error *ngIf="dateTo.invalid">Invalid end date</mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="outline">
-                  <mat-label>Address</mat-label>
+                  <mat-label>{{ 'order.label.address' | translate }}</mat-label>
                   <input
                     matInput
                     [formControl]="address"
-                    placeholder="Address"
+                    placeholder="{{ 'order.placeholder.address' | translate }}"
                     required
                   />
                   <mat-error *ngIf="address.invalid">{{
                     getAddressErrorMessage()
                   }}</mat-error>
                 </mat-form-field>
-                <button type="submit" color="accent" mat-flat-button>Create</button>
+                <button type="submit" color="accent" mat-flat-button>{{ "button.create" | translate }}</button>
               </form>
             </mat-card-content>
           </mat-card>

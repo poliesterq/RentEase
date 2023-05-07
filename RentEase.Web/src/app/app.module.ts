@@ -50,6 +50,7 @@ import { EditItemComponent } from './item/edit-item/edit-item.component';
 import { ListItemComponent } from './item/list-item/list-item.component';
 import { CreateOrderComponent } from './order/create-order/create-order.component';
 import { DetailsOrderComponent } from './order/details-order/details-order.component';
+import { EditOrderComponent } from './order/edit-order/edit-order.component';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http);
@@ -77,7 +78,8 @@ export function tokenGetter(){
     EditItemComponent,
     ListItemComponent,
     CreateOrderComponent,
-    DetailsOrderComponent
+    DetailsOrderComponent,
+    EditOrderComponent
    ],
   imports: [
     BrowserModule,

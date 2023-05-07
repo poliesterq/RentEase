@@ -25,6 +25,8 @@
         "registration": "Registration",
         "item_create": "Create item",
         "item_edit": "Edit",
+        "order_create": "Create order",
+        "order_edit": "Edit order",
         "information": "Information",
         "landlord": "Landlord",
         "tenant": "Tenant",
@@ -54,6 +56,15 @@
             "created": "Created",
             "confirmed": "Confirmed",
             "delivered": "Delivered"
+        },
+        "label":{
+            "date": "Date",
+            "address": "Address"
+        },
+        "placeholder":{
+            "address": "USA, New York, 1 Main St",
+            "date_from": "Start",
+            "date_to": "End"
         }
     },
     "placeholder": {

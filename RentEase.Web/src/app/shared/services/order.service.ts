@@ -65,7 +65,7 @@ export class OrderService {
   }
 
   edit(Order: Order): Observable<boolean> {
-    return this.http.put<boolean>(this.baseUrl, Order);
+    return this.http.put<boolean>(`${this.baseUrl}/Update`, Order);
   }
 
   delete(id: number): Observable<boolean> {
