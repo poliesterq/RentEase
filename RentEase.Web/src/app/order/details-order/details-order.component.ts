@@ -72,19 +72,25 @@ export class DetailsOrderComponent implements OnInit {
   }
 
   confirm(id: number): void {
-    this.orderService.confirm(id).pipe(
-      tap(() => {
-        this.snackbar.open('Order confirmed succesfully', 'Close', {
-          duration: 1500,
-          horizontalPosition: 'right',
-          verticalPosition: 'top',
-        });
+    this.orderService
+      .confirm(id)
+      .pipe(
+        tap(() => {
+          this.snackbar.open('Order confirmed succesfully', 'Close', {
+            duration: 1500,
+            horizontalPosition: 'right',
+            verticalPosition: 'top',
+          });
 
-        this.orderService.getById(this.orderId).subscribe((data) => {
-          this.order = data;
-        });
-      })
-    );
+          this.orderService.getById(this.orderId).subscribe((order) => {
+            this.order = order;
+            this.userService.getById(order.item.landlordId).subscribe((landlord) => {
+                order.item.landlord = landlord;
+              });
+          });
+        })
+      )
+      .subscribe();
   }
 
   openChat(userId: string) {

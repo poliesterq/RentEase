@@ -59,7 +59,7 @@
       "
     >
       <button
-        *ngIf="userId == order.item.landlordId"
+        *ngIf="userId == order.item.landlordId && !order.isConfirmed"
         mat-stroked-button
         color="accent"
         (click)="confirm(orderId)"

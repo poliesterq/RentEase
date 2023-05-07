@@ -73,6 +73,6 @@ export class OrderService {
   }
 
   confirm(id: number): Observable<boolean> {
-    return this.http.delete<boolean>(`${this.baseUrl}/Confirm/${id}`);
+    return this.http.put<boolean>(`${this.baseUrl}/Confirm/${id}`, {});
   }
 }
