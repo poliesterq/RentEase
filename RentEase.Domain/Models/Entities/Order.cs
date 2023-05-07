@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 using RentEase.Domain.Models.Abstractions;
 
 namespace RentEase.Domain.Models.Entities;
@@ -12,6 +13,9 @@ public class Order : BaseEntity
     public string DeliveryAddress { get; set; }
     
     public bool IsConfirmed { get; set; }
+    
+    [NotMapped]
+    public bool IsDelivered => IsConfirmed && DateFrom >= DateTime.Now && DateTo <= DateTime.Now ;
     
     public int ItemId { get; set; }
     

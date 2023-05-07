@@ -25,6 +25,7 @@ public class UserController : ControllerBase
     }
 
     [HttpGet("{id}")]
+    [AllowAnonymous]
     public async Task<IActionResult> Get(string id)
     {
         var user = await _userService.Get(id);

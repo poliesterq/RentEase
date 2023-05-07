@@ -1,0 +1,208 @@
+<div class="container">
+  <div class="container-title">
+    <h1>{{ "title.order" | translate }}</h1>
+    <div>
+      <mat-card class="container-order-status">
+        <mat-card-header>
+          <mat-card-title>
+            {{ order.item.title }}
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-stepper>
+            <mat-step [completed]="true">
+              <ng-template matStepLabel>Created</ng-template>
+            </mat-step>
+            <mat-step [completed]="order.isConfirmed">
+              <ng-template matStepLabel>Confirmed</ng-template>
+            </mat-step>
+            <mat-step [completed]="order.isDelivered">
+              <ng-template matStepLabel>Delivered</ng-template>
+            </mat-step>
+          </mat-stepper>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div
+      class="container-title-action"
+      *ngIf="
+        role == Role[Role.Admin] ||
+        userId == order.tenantId ||
+        userId == order.item.landlordId
+      "
+    >
+      <button
+        *ngIf="userId == order.item.landlordId"
+        mat-stroked-button
+        color="accent"
+        (click)="confirm(orderId)"
+      >
+        <mat-icon>edit</mat-icon>
+        Confirm
+        {{ "button.edit" | translate }}
+      </button>
+      <button
+        *ngIf="userId == order.tenantId"
+        mat-stroked-button
+        color="accent"
+        [routerLink]="['/order/edit/:id']"
+        [queryParams]="{ id: order.item.id }"
+      >
+        <mat-icon>edit</mat-icon>
+        {{ "button.edit" | translate }}
+      </button>
+      <button
+        *ngIf="
+          role == Role[Role.Admin] ||
+          userId == order.tenantId ||
+          userId == order.item.landlordId
+        "
+        mat-stroked-button
+        color="warn"
+        (click)="delete(orderId)"
+      >
+        <mat-icon>delete</mat-icon>
+        {{ "button.delete" | translate }}
+      </button>
+    </div>
+    <div class="container-title-action" *ngIf="userId == order.tenantId">
+      <button
+        mat-flat-button
+        color="primary"
+        (click)="openChat(order.item.landlordId)"
+      >
+        <mat-icon>email</mat-icon>
+        {{ "button.write" | translate }}
+      </button>
+    </div>
+    <div class="container-title-action" *ngIf="userId == order.item.landlordId">
+      <button
+        mat-flat-button
+        color="primary"
+        (click)="openChat(order.tenantId)"
+      >
+        <mat-icon>email</mat-icon>
+        {{ "button.write" | translate }}
+      </button>
+    </div>
+  </div>
+  <div class="container-content">
+    <div>
+      <mat-card
+        [routerLink]="['/item/:id']"
+        [queryParams]="{ id: order.item.id }"
+      >
+        <mat-card-header>
+          <mat-card-title>
+            {{ order.item.title }}
+          </mat-card-title>
+          <mat-card-subtitle>
+            {{ Category[order.item.category] }}
+          </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <img
+            mat-card-image
+            [src]="
+              order.item.imageUrl
+                ? order.item.imageUrl
+                : '..assets/images/default-image.jpg'
+            "
+            onerror="'..assets/images/default-image.jpg'"
+            alt="Photo of the item"
+          />
+
+          <p>
+            <mat-icon color="primary">description</mat-icon>
+            {{ order.item.description }}
+          </p>
+          <p>
+            <mat-icon color="primary">location_on</mat-icon>
+            {{ order.item.address }}
+          </p>
+          <p>
+            <mat-icon color="primary" svgIcon="us"></mat-icon>
+            {{ order.item.priceUS }}
+          </p>
+          <p *ngIf="language == 'ua'">
+            <mat-icon color="primary" svgIcon="uah"></mat-icon>
+            {{ order.item.priceUA }}
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="container-additional">
+      <div>
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title> Order details </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p>
+              <mat-icon color="primary">calendar_today</mat-icon>
+              {{ order.dateFrom | date : "dd/MM/yy" }} -
+              {{ order.dateTo | date : "dd/MM/yy" }}
+            </p>
+            <p>
+              <mat-icon color="primary">location_on</mat-icon>
+              {{ order.deliveryAddress }}
+            </p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <div>
+        <mat-card
+          [routerLink]="['/profile/:id']"
+          [queryParams]="{ id: order.item.landlordId }"
+        >
+          <mat-card-header>
+            <mat-card-title>
+              {{ order.item.landlord?.lastName }}
+              {{ order.item.landlord?.firstName }}
+            </mat-card-title>
+            <mat-card-subtitle>
+              {{ "title.landlord" | translate }}
+            </mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p>
+              <mat-icon color="primary">email</mat-icon>
+              {{ order.item.landlord?.email }}
+            </p>
+            <p>
+              <mat-icon color="primary">phone</mat-icon>
+              {{ order.item.landlord?.phoneNumber }}
+            </p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <div>
+        <mat-card
+          [routerLink]="['/profile/:id']"
+          [queryParams]="{ id: order.tenantId }"
+        >
+          <mat-card-header>
+            <mat-card-title>
+              {{ order.tenant.lastName }}
+              {{ order.tenant.firstName }}
+            </mat-card-title>
+            <mat-card-subtitle>
+              {{ "title.tenant" | translate }}
+            </mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p>
+              <mat-icon color="primary">email</mat-icon>
+              {{ order.tenant.email }}
+            </p>
+            <p>
+              <mat-icon color="primary">phone</mat-icon>
+              {{ order.tenant.phoneNumber }}
+            </p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
