@@ -16,8 +16,9 @@
         "update": "Update",
         "create": "Create",
         "delete": "Delete",
-        "order": "Order"
-
+        "order": "Order",
+        "chat": "Chat",
+        "confirm": "Confirm"
     },
     "title": {
         "login": "Login",
@@ -26,9 +27,12 @@
         "item_edit": "Edit",
         "information": "Information",
         "landlord": "Landlord",
+        "tenant": "Tenant",
         "reserved_dates": "Reserved dates",
         "search": "Search",
-        "items": "Items"
+        "items": "Items",
+        "order_details": "Order details",
+        "details": "Details"
     },
     "item": {
         "text": {
@@ -43,6 +47,13 @@
             "description": "Lightweight and agile bike for city rides",
             "price": "20",
             "address": "USA, New York, 1 Main St"
+        }
+    },
+    "order": {
+        "status": {
+            "created": "Created",
+            "confirmed": "Confirmed",
+            "delivered": "Delivered"
         }
     },
     "placeholder": {

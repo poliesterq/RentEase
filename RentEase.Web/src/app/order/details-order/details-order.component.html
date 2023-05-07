@@ -1,6 +1,6 @@
 <div class="container">
   <div class="container-title">
-    <h1>{{ "title.order" | translate }}</h1>
+    <h1>{{ "title.order_details" | translate }}</h1>
     <div>
       <mat-card class="container-order-status">
         <mat-card-header>
@@ -11,17 +11,44 @@
         <mat-card-content>
           <mat-stepper>
             <mat-step [completed]="true">
-              <ng-template matStepLabel>Created</ng-template>
+              <ng-template matStepLabel>{{
+                "order.status.created" | translate
+              }}</ng-template>
             </mat-step>
             <mat-step [completed]="order.isConfirmed">
-              <ng-template matStepLabel>Confirmed</ng-template>
+              <ng-template matStepLabel>{{
+                "order.status.confirmed" | translate
+              }}</ng-template>
             </mat-step>
             <mat-step [completed]="order.isDelivered">
-              <ng-template matStepLabel>Delivered</ng-template>
+              <ng-template matStepLabel>{{
+                "order.status.delivered" | translate
+              }}</ng-template>
             </mat-step>
           </mat-stepper>
         </mat-card-content>
       </mat-card>
+    </div>
+
+    <div class="container-title-action" *ngIf="userId == order.tenantId">
+      <button
+        mat-flat-button
+        color="primary"
+        (click)="openChat(order.item.landlordId)"
+      >
+        <mat-icon>email</mat-icon>
+        {{ "button.chat" | translate }}
+      </button>
+    </div>
+    <div class="container-title-action" *ngIf="userId == order.item.landlordId">
+      <button
+        mat-flat-button
+        color="primary"
+        (click)="openChat(order.tenantId)"
+      >
+        <mat-icon>email</mat-icon>
+        {{ "button.chat" | translate }}
+      </button>
     </div>
     <div
       class="container-title-action"
@@ -37,9 +64,8 @@
         color="accent"
         (click)="confirm(orderId)"
       >
-        <mat-icon>edit</mat-icon>
-        Confirm
-        {{ "button.edit" | translate }}
+        <mat-icon>library_add_check</mat-icon>
+        {{ "button.confirm" | translate }}
       </button>
       <button
         *ngIf="userId == order.tenantId"
@@ -63,26 +89,6 @@
       >
         <mat-icon>delete</mat-icon>
         {{ "button.delete" | translate }}
-      </button>
-    </div>
-    <div class="container-title-action" *ngIf="userId == order.tenantId">
-      <button
-        mat-flat-button
-        color="primary"
-        (click)="openChat(order.item.landlordId)"
-      >
-        <mat-icon>email</mat-icon>
-        {{ "button.write" | translate }}
-      </button>
-    </div>
-    <div class="container-title-action" *ngIf="userId == order.item.landlordId">
-      <button
-        mat-flat-button
-        color="primary"
-        (click)="openChat(order.tenantId)"
-      >
-        <mat-icon>email</mat-icon>
-        {{ "button.write" | translate }}
       </button>
     </div>
   </div>
@@ -136,7 +142,7 @@
       <div>
         <mat-card>
           <mat-card-header>
-            <mat-card-title> Order details </mat-card-title>
+            <mat-card-title>{{ "title.details" | translate }} </mat-card-title>
           </mat-card-header>
           <mat-card-content>
             <p>
