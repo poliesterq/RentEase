@@ -49,8 +49,17 @@ mat-card-actions {
   margin: 0.5em;
 }
 
-.mat-card-image {
-  max-width: 30em;
+img {
+  max-height: 30em;
+  width: fit-content;
+  border-radius: 5px;
+  display: block;
+  margin: 0 auto 1em;
+}
+
+p mat-icon {
+  vertical-align: middle;
+  margin-right: 5px;
 }
 
 .header-image {
@@ -67,4 +76,11 @@ mat-card-footer {
 p mat-icon{
   vertical-align: middle;
   margin-right: 5px;
+}
+
+.card-reserved-dates mat-card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

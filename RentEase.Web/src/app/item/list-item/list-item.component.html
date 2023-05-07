@@ -29,9 +29,9 @@
         </section>
         
         <p>{{ "label.priceUS" | translate }}</p>
-        <mat-slider min="0" [max]="itemMaxPrice" [discrete]="true" [step]="10">
+        <mat-slider [min]="0" [max]="itemMaxPrice" [discrete]="true" [step]="10">
           <input [formControl]="priceMinUS" [value]="0" matSliderStartThumb>
-          <input [formControl]="priceMaxUS" [value]="3" matSliderEndThumb>
+          <input [formControl]="priceMaxUS" [value]="itemMaxPrice" matSliderEndThumb>
         </mat-slider>
 
         <button type="submit" color="accent" mat-flat-button>

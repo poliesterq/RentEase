@@ -26,8 +26,8 @@ public class OrderController : ControllerBase
         _mapper = mapper;
     }
 
-    [HttpGet]
-    public async Task<IActionResult> Get([FromQuery] OrderSearchParameters orderParameters)
+    [HttpPost("GetList")]
+    public async Task<IActionResult> Get(OrderSearchParameters orderParameters)
     {
         return Ok(await _orderService.Get(orderParameters));
     }
@@ -39,7 +39,7 @@ public class OrderController : ControllerBase
         return order != null ? Ok(order) : NotFound();
     }
 
-    [HttpPost]
+    [HttpPost("Create")]
     [AuthorizeRoles(Role.User)]
     public async Task<IActionResult> Create(OrderDto orderDto)
     {

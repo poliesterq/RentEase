@@ -1,0 +1,109 @@
+<div class="container">
+  <h1>Create order</h1>
+  <div class="container-content">
+    <mat-card
+      class="card-item"
+      [routerLink]="['/item/:id']"
+      [queryParams]="{ id: item.id }"
+    >
+      <mat-card
+        class="card-landlord"
+        [routerLink]="['/profile/:id']"
+        [queryParams]="{ id: item.landlordId }"
+      >
+        <mat-card-header>
+          <mat-card-title>
+            {{ item.landlord?.firstName }} {{ item.landlord?.lastName }}
+          </mat-card-title>
+        </mat-card-header>
+      </mat-card>
+
+      <mat-card-header>
+        <mat-card-title>
+          {{ item.title }}
+        </mat-card-title>
+        <mat-card-subtitle>
+          {{ Category[item.category] }}
+        </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <img
+          mat-card-image
+          [src]="
+            item.imageUrl ? item.imageUrl : '..assets/images/default-image.jpg'
+          "
+          onerror="'..assets/images/default-image.jpg'"
+          alt="Photo of the item"
+        />
+
+        <p>
+          <mat-icon color="primary">description</mat-icon>
+          {{ item.description }}
+        </p>
+        <p>
+          <mat-icon color="primary">location_on</mat-icon>
+          {{ item.address }}
+        </p>
+        <p>
+          <mat-icon color="primary" svgIcon="us"></mat-icon>
+          {{ item.priceUS }}
+        </p>
+        <p *ngIf="language == 'ua'">
+          <mat-icon color="primary" svgIcon="uah"></mat-icon>
+          {{ item.priceUA }}
+        </p>
+      </mat-card-content>
+    </mat-card>
+
+    <div>
+        <mat-card class="card-order">
+            <mat-card-content>
+              <form (ngSubmit)="create()">
+                <mat-form-field appearance="outline">
+                  <mat-label>Date</mat-label>
+                  <mat-date-range-input [formGroup]="form" [rangePicker]="picker">
+                    <input matStartDate [formControl]="dateFrom" placeholder="Start date"/>
+                    <input matEndDate [formControl]="dateTo" placeholder="End date" />
+                  </mat-date-range-input>
+                  <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+                  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-date-range-picker #picker></mat-date-range-picker>
+      
+                  <mat-error *ngIf="dateFrom.invalid">Invalid start date</mat-error>
+                  <mat-error *ngIf="dateTo.invalid">Invalid end date</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                  <mat-label>Address</mat-label>
+                  <input
+                    matInput
+                    [formControl]="address"
+                    placeholder="Address"
+                    required
+                  />
+                  <mat-error *ngIf="address.invalid">{{
+                    getAddressErrorMessage()
+                  }}</mat-error>
+                </mat-form-field>
+                <button type="submit" color="accent" mat-flat-button>Create</button>
+              </form>
+            </mat-card-content>
+          </mat-card>
+
+          <mat-accordion>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  {{ "title.reserved_dates" | translate }}
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <mat-card class="card-reserved-dates" *ngFor="let order of item.orders">
+                <mat-card-content>
+                  {{ order.dateFrom | date : "MM/dd/yy" }} -
+                  {{ order.dateTo | date : "MM/dd/yy" }}
+                </mat-card-content>
+              </mat-card>
+            </mat-expansion-panel>
+          </mat-accordion>
+    </div>
+  </div>
+</div>

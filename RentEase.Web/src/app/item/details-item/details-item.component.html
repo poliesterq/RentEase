@@ -18,7 +18,9 @@
 
     <div class="container-content-addition">
       <mat-card>
-        <mat-card-title> {{ "title.information" | translate }} </mat-card-title>
+        <mat-card-header>
+          <mat-card-title> {{ "title.information" | translate }} </mat-card-title>
+        </mat-card-header>
         <mat-card-content>
           <p>
             <mat-icon color="primary"> description </mat-icon>
@@ -43,7 +45,9 @@
         [routerLink]="['/profile/:id']"
         [queryParams]="{ id: item.landlordId }"
       >
-        <mat-card-title> {{ "title.landlord" | translate }} </mat-card-title>
+        <mat-card-header>
+          <mat-card-title> {{ "title.landlord" | translate }} </mat-card-title>
+        </mat-card-header>
         <mat-card-content>
           <p>{{ item.landlord?.lastName }} {{ item.landlord?.firstName }}</p>
         </mat-card-content>
@@ -55,9 +59,8 @@
             <mat-panel-title>
               {{ "title.reserved_dates" | translate }}
             </mat-panel-title>
-            <mat-panel-description> </mat-panel-description>
           </mat-expansion-panel-header>
-          <mat-card *ngFor="let order of item.orders">
+          <mat-card class="card-reserved-dates" *ngFor="let order of item.orders">
             <mat-card-content>
               {{ order.dateFrom | date : "dd/MM/yy" }} -
               {{ order.dateTo | date : "dd/MM/yy" }}
@@ -73,7 +76,7 @@
         <button
           mat-flat-button
           color="accent"
-          [routerLink]="['/otder/create/:itemId']"
+          [routerLink]="['/order/create/:itemId']"
           [queryParams]="{ itemId: item.id }"
         >
           {{ "button.order" | translate }}
