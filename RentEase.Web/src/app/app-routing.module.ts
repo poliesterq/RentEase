@@ -21,61 +21,89 @@ import { ChatListComponent } from './chat/chat-list/chat-list.component';
 import { ChatDetailsComponent } from './chat/chat-details/chat-details.component';
 import { Role } from './shared/enums/role.enum';
 import { UserListComponent } from './user-list/user-list.component';
+import { StatisticComponent } from './statistic/statistic/statistic.component';
 
 const routes: Routes = [
   { path: 'home', component: HomePageComponent },
-  { path: 'account',
-    children: [    
-      { path: "login", component: LoginComponent},
-      { path: "registration", component: RegistrationComponent},
-      { path: "details", component: DetailsComponent, canActivate: [AuthenticationGuard]}
-    ]
+  {
+    path: 'account',
+    children: [
+      { path: 'login', component: LoginComponent },
+      { path: 'registration', component: RegistrationComponent },
+      {
+        path: 'details',
+        component: DetailsComponent,
+        canActivate: [AuthenticationGuard],
+      }
+    ],
   },
 
-  { path: 'item', 
+  {
+    path: 'item',
     children: [
       { path: '', component: ListItemComponent },
-      { path: 'create', component: CreateItemComponent, canActivate: [AuthenticationGuard]},
-      { path: 'edit/:id', component: EditItemComponent, canActivate: [AuthenticationGuard]},
+      {
+        path: 'create',
+        component: CreateItemComponent,
+        canActivate: [AuthenticationGuard],
+        data: { roles : [Role[Role.User]]}
+      },
+      {
+        path: 'edit/:id',
+        component: EditItemComponent,
+        canActivate: [AuthenticationGuard],
+      },
       { path: ':id', component: DetailsItemComponent }
-    ]
+    ],
   },
 
-  { path: 'order', canActivate: [AuthenticationGuard],
+  {
+    path: 'order',
+    canActivate: [AuthenticationGuard],
+    data: { roles : [Role[Role.User]]}, 
     children: [
       { path: '', component: ListOrderComponent },
       { path: 'create/:itemId', component: CreateOrderComponent},
-      { path: 'edit/:id', component: EditOrderComponent},
-      { path: ':id', component: DetailsOrderComponent}
-    ]
+      { path: 'edit/:id', component: EditOrderComponent },
+      { path: ':id', component: DetailsOrderComponent }
+    ],
   },
 
-  { path: 'chat', canActivate: [AuthenticationGuard],
+  {
+    path: 'chat',
+    canActivate: [AuthenticationGuard],
+    data: { roles : [Role[Role.User]]}, 
     children: [
       { path: '', component: ChatListComponent },
       { path: ':id', component: ChatComponent },
       { path: 'details/:id', component: ChatDetailsComponent }
-    ]
+    ],
   },
-  { 
-    path: 'admin/user', 
+
+  {
+    path: 'statistic',
     canActivate: [AuthenticationGuard],
-    data: { roles : [Role[Role.Admin]]}, 
-    component: UserListComponent
+    data: { roles: [Role[Role.User]] },
+    component: StatisticComponent,
+  },
+
+  {
+    path: 'admin/user',
+    canActivate: [AuthenticationGuard],
+    data: { roles: [Role[Role.Admin]] },
+    component: UserListComponent,
   },
 
   { path: 'notfound', component: NotFoundComponent },
   { path: 'unauthorized', component: UnauthorizedComponent },
   { path: 'forbidden', component: ForbiddenComponent },
 
-  { path: '', redirectTo: 'home', pathMatch: 'full'},
-  { path: '**', redirectTo: 'notfound', pathMatch: 'full' }
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '**', redirectTo: 'notfound', pathMatch: 'full' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule {
-
- }
+export class AppRoutingModule {}

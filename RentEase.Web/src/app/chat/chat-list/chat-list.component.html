@@ -3,7 +3,7 @@
     <h1>{{ "title.chats" | translate }}</h1>
   </div>
   <div *ngIf="chats == undefined || chats.length <= 0; else chatList">
-    <h3>{{ "empty_result.chats" | translate }}</h3>
+    <h3>{{ "chat.text.empty_list" | translate }}</h3>
   </div>
 </div>
 

@@ -8,12 +8,13 @@
   <a mat-button [routerLink]="['/item']">
     {{ "navbar.items" | translate }}
   </a>
-  <a mat-button [routerLink]="['/order']">
+  <a mat-button [routerLink]="['/order']" *ngIf="role === Role[Role.User]">
     {{ "navbar.orders" | translate }}
   </a>
-  <a mat-button 
-  *ngIf="role === Role[Role.Admin]"
-  [routerLink]="['admin/user']">
+  <a mat-button *ngIf="role === Role[Role.User]" [routerLink]="['statistic']">
+    {{ "navbar.statistic" | translate }}
+  </a>
+  <a mat-button *ngIf="role === Role[Role.Admin]" [routerLink]="['admin/user']">
     {{ "navbar.users" | translate }}
   </a>
 
