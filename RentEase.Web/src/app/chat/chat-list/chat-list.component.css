@@ -1,0 +1,62 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 3em;
+    margin-right: 3em;
+}
+
+.container-title {
+    display: grid;
+    grid-template-columns: 4fr 150px;
+    margin-bottom: 1em;
+}
+
+.button-add {
+    float: right;
+    align-self: end;
+}
+
+h1 {
+    margin: 0;
+}
+
+a {
+    padding: 2em;
+    text-decoration: none;
+    color: black;
+    margin: 1em;
+}
+
+a .chat-title {
+    font-size: large;
+    font-weight: 405;
+}
+
+a .chat-text {
+    display: flex;
+    justify-content: space-between;
+}
+
+a .chat-time {
+    opacity: .6; 
+}
+
+mat-icon {
+    transform: scale(1.5);
+}
+
+.icon-read-status {
+    opacity: 0.4;
+    transform: scale(0.8);
+}
+
+mat-action-list > button {
+    display:none;
+    opacity: 0.9;
+    margin-top: 0.5em;
+    margin-bottom: 0;
+}
+
+mat-action-list:hover button {
+    display:initial;
+}

@@ -37,10 +37,10 @@
 
   <button
     *ngIf="!isLoggedIn"
-    mat-icon-button color="accent" 
+    mat-icon-button
     [routerLink]="['/account/login']"
   >
-    <mat-icon color="accent">login</mat-icon>
+    <mat-icon>login</mat-icon>
   </button>
   <a
     *ngIf="role === Role[Role.User]"

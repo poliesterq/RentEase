@@ -29,12 +29,20 @@ public class ChatController : ControllerBase
         return Ok(await _chatService.Get(userId));
     }
 
-    [HttpGet("{chatId}")]
+    [HttpGet("ChatId/{chatId}")]
     public async Task<IActionResult> Get(string chatId)
     {
         var userId = User.Claims.FirstOrDefault(claim => claim.Type == "id")?.Value;
         var chat = await _chatService.Get(chatId, userId);
         return chat != null ? Ok(chat) : NotFound();
+    }
+
+    [HttpGet("UserId/{userId}")]
+    public async Task<IActionResult> GetChatId(string userId)
+    {
+        var currUserId = User.Claims.FirstOrDefault(claim => claim.Type == "id")?.Value;
+        var chatId = await _chatService.GetChatIdByUsers(new(){userId, currUserId});
+        return chatId != null ? Ok(chatId) : NotFound();
     }
 
     [HttpGet("CountUnread")]
@@ -59,7 +67,7 @@ public class ChatController : ControllerBase
     }
 
     [HttpPut]
-    [Route("Leave/{chatId}")]
+    [Route("LeaveChat/{chatId}")]
     public async Task<IActionResult> LeaveChat(string chatId)
     {
         var userId = User.Claims.FirstOrDefault(claim => claim.Type == "id")?.Value;
@@ -68,15 +76,15 @@ public class ChatController : ControllerBase
     }
 
     [HttpPut]
-    [Route("Message/Send")]
+    [Route("SendMessage")]
     public async Task<IActionResult> SendMessage(SendMessageModel message)
     {
         var result = await _chatService.SendMessage(message);
         return result != null ? Ok(result) : NotFound();
     }
 
-    [HttpDelete]
-    [Route("Message/Delete")]
+    [HttpPut]
+    [Route("DeleteMessage")]
     public async Task<IActionResult> DeleteMessage(DeleteMessageModel message)
     {
         var result = await _chatService.DeleteMessage(message);

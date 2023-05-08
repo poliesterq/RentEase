@@ -13,6 +13,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
+import { ScrollingModule } from '@angular/cdk/scrolling';
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -52,6 +54,9 @@ import { CreateOrderComponent } from './order/create-order/create-order.componen
 import { DetailsOrderComponent } from './order/details-order/details-order.component';
 import { EditOrderComponent } from './order/edit-order/edit-order.component';
 import { ListOrderComponent } from './order/list-order/list-order.component';
+import { ChatListComponent } from './chat/chat-list/chat-list.component';
+import { ChatDetailsComponent } from './chat/chat-details/chat-details.component';
+import { ChatComponent } from './chat/chat/chat.component';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http);
@@ -81,7 +86,10 @@ export function tokenGetter(){
     CreateOrderComponent,
     DetailsOrderComponent,
     EditOrderComponent,
-    ListOrderComponent
+    ListOrderComponent,
+    ChatListComponent,
+    ChatDetailsComponent,
+    ChatComponent
    ],
   imports: [
     BrowserModule,
@@ -95,6 +103,8 @@ export function tokenGetter(){
     FormsModule,
     ReactiveFormsModule,
 
+    ScrollingModule,
+    
     MatButtonModule,
     MatToolbarModule,
     MatIconModule,

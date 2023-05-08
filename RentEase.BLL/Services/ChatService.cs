@@ -24,7 +24,7 @@ public class ChatService : IChatService
         _userManager = userManager;
     }
 
-    public async Task<IEnumerable<Chat>> Get(string userId)
+     public async Task<IEnumerable<Chat>> Get(string userId)
     {
         var chats = await _chatRepository.Get(chat => chat.Users.Any(user => user.Id == userId));
 
@@ -43,6 +43,19 @@ public class ChatService : IChatService
 
         _logger.LogInformation(logInformation);
         return result ?? chat;
+    }
+
+    public async Task<string?> GetChatIdByUsers(List<string> userIdList)
+    {
+        var chat = await _chatRepository.FirstOrDefault(chat => chat.Users.Count == 2 
+                                                                && chat.Users.Any(user => user.Id == userIdList[0]) 
+                                                                && chat.Users.Any(user => user.Id == userIdList[1]));
+        var logInformation = chat != null
+            ? "The chatId was got"
+            : "The chatId wasn't got";
+
+        _logger.LogInformation(logInformation);
+        return chat?.Id;
     }
 
     public async Task<Chat?> Create(Chat chat)

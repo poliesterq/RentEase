@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="container-title">
+    <h1>{{ "title.chats" | translate }}</h1>
+  </div>
+  <div *ngIf="chats == undefined || chats.length <= 0; else chatList">
+    <h3>{{ "empty_result.chats" | translate }}</h3>
+  </div>
+</div>
+
+<ng-template #chatList>
+  <mat-action-list>
+    <div
+      *ngFor="let chat of chats"
+      [routerLink]="['/chat/:id']"
+      [queryParams]="{ id: chat.id }"
+    >
+      <a mat-list-item>
+        <mat-icon matListItemIcon>
+          {{ chat.users.length <= 2 ? "perm_identity" : "group" }}
+        </mat-icon>
+        <div mat-line class="chat-title">
+          {{ getChatName(chat) }}
+        </div>
+        <div mat-line class="chat-text" *ngIf="getLastMessage(chat) as message">
+          {{ getSender(message) }} : {{ message.text }}
+          <mat-icon class="icon-read-status">
+            {{ message.isRead ? "done_all" : "done" }}
+          </mat-icon>
+        </div>
+        <div mat-line class="chat-time">
+          {{ getLastMessage(chat)?.sendTime | date : "dd/MM/yy HH:mm" }}
+        </div>
+      </a>
+      <mat-divider></mat-divider>
+    </div>
+  </mat-action-list>
+</ng-template>

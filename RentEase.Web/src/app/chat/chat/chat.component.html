@@ -1,0 +1,58 @@
+<div class="container">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>
+                {{getChatName()}}
+                <button mat-icon-button
+                [routerLink]="['/chat/details/:id']"    
+                [queryParams]="{ id: chat.id }">
+                    <mat-icon color="primary">info</mat-icon>
+                </button>
+            </mat-card-title>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+
+
+        <mat-card-content>
+            <cdk-virtual-scroll-viewport itemSize="50">
+                <div *cdkVirtualFor="let message of chat.messages"
+                class="{{message.author.id === accountId ? 'message-container-my' 
+                : message.author.id.length === 0 ? 'message-container-information' : 'message-container-other'}}" >
+                    <p class="message-sender" *ngIf="message.author.id.length !== 0">
+                        {{message.author.firstName}} {{message.author.lastName}}
+                    </p>
+                    <div class="message-interaction">
+                        <button *ngIf="message.author.id === accountId" type="submit" color="warn" 
+                        mat-mini-fab (click)="deleteMessage(message.id)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                        <div class="message-context">
+                            <p class="message-text">{{message.text}}</p>
+                            <div class="message-status">
+                                <p class="message-time" *ngIf="message.author.id.length !== 0">
+                                    {{message.sendTime | date:'dd/MM/yy HH:mm'}}
+                                </p>
+                                <mat-icon class="icon-read-status" *ngIf="message.author.id.length !== 0">
+                                    {{message.isRead ? 'done_all' : 'done'}}
+                                </mat-icon>
+                            </div>
+                        </div>
+                    </div>                
+                </div>
+            </cdk-virtual-scroll-viewport>
+        </mat-card-content>
+        
+        <mat-divider></mat-divider>
+        <mat-card-footer>
+                <form [formGroup]="form" (ngSubmit)="sendMessage()">
+                    <mat-form-field appearance="outline">
+                        <input matInput [formControl]="message" placeholder="Enter your message..." >
+                    </mat-form-field>       
+                            
+                    <button type="submit" color="primary" mat-icon-button>
+                        <mat-icon>send</mat-icon>
+                    </button>
+                </form>
+        </mat-card-footer>
+    </mat-card>
+</div>
