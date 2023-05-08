@@ -6,11 +6,7 @@
         [routerLink]="['/item/:id']"
         [queryParams]="{ id: order.item.id }"
       >
-        <mat-card
-          class="card-landlord"
-          [routerLink]="['/profile/:id']"
-          [queryParams]="{ id: order.item.landlordId }"
-        >
+        <mat-card class="card-landlord">
           <mat-card-header>
             <mat-card-title>
               {{ order.item.landlord?.firstName }} {{ order.item.landlord?.lastName }}

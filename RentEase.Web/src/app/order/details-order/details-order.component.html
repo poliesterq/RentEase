@@ -162,10 +162,7 @@
         </mat-card>
       </div>
       <div>
-        <mat-card
-          [routerLink]="['/profile/:id']"
-          [queryParams]="{ id: order.item.landlordId }"
-        >
+        <mat-card>
           <mat-card-header>
             <mat-card-title>
               {{ order.item.landlord?.lastName }}
@@ -188,10 +185,7 @@
         </mat-card>
       </div>
       <div>
-        <mat-card
-          [routerLink]="['/profile/:id']"
-          [queryParams]="{ id: order.tenantId }"
-        >
+        <mat-card>
           <mat-card-header>
             <mat-card-title>
               {{ order.tenant.lastName }}
