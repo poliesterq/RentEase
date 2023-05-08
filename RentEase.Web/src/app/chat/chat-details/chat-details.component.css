@@ -1,0 +1,28 @@
+div {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+h4 {
+  margin-left: 1em;
+}
+
+mat-card-title {
+  display: flex;
+  align-items: center;
+}
+
+mat-card {
+  width: 40em;
+}
+
+mat-card-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+mat-card-footer {
+  padding: 0.5em;
+}

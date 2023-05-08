@@ -25,22 +25,22 @@
   </mat-select>
 
   <button
+    mat-icon-button
     *ngIf="role === Role[Role.User]"
     mat-icon-button
     [routerLink]="['/chat']"
   >
-    <mat-icon>
-      <!-- [matBadge]="countUnread" matBadgeColor="accent" [matBadgeHidden]="countUnread == 0" -->
-      mail
-    </mat-icon>
+    <mat-icon>mail</mat-icon
+    ><span
+      [matBadge]="countUnread"
+      matBadgeColor="accent"
+      [matBadgeHidden]="countUnread == 0"
+    >
+    </span>
   </button>
 
-  <button
-    *ngIf="!isLoggedIn"
-    mat-icon-button color="accent" 
-    [routerLink]="['/account/login']"
-  >
-    <mat-icon color="accent">login</mat-icon>
+  <button *ngIf="!isLoggedIn" mat-icon-button [routerLink]="['/account/login']">
+    <mat-icon>login</mat-icon>
   </button>
   <a
     *ngIf="role === Role[Role.User]"

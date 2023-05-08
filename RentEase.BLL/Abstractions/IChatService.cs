@@ -9,16 +9,16 @@ public interface IChatService
 
     public Task<Chat?> Get(string chatId, string userId);
 
+    public Task<string?> GetChatIdByUsers(List<string> userIdList);
+
     public Task<Chat?> Create(Chat chat);
 
     public Task<bool> Delete(string id);
     
     public Task<bool> LeaveChat(string chatId, string userId);
-
-    //TODO: change to bool ?
+    
     public Task<Chat?> SendMessage(SendMessageModel message);
     
-    //TODO: change to bool ?
     public Task<Chat?> DeleteMessage(DeleteMessageModel message);
 
     public Task<long> CountUnread(string userId);
