@@ -50,7 +50,7 @@ export class RegistrationComponent implements OnInit {
         lastName: this.lastName.value,
         email: this.email.value,
         phoneNumber: this.phoneNumber.value,
-        birthDate: this.birthdate.value,
+        birthDate: this.birthdate.value.toISOString(),
         password: this.password.value
       };
 

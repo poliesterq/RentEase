@@ -19,6 +19,8 @@ import { ListOrderComponent } from './order/list-order/list-order.component';
 import { ChatComponent } from './chat/chat/chat.component';
 import { ChatListComponent } from './chat/chat-list/chat-list.component';
 import { ChatDetailsComponent } from './chat/chat-details/chat-details.component';
+import { Role } from './shared/enums/role.enum';
+import { UserListComponent } from './user-list/user-list.component';
 
 const routes: Routes = [
   { path: 'home', component: HomePageComponent },
@@ -54,6 +56,12 @@ const routes: Routes = [
       { path: ':id', component: ChatComponent },
       { path: 'details/:id', component: ChatDetailsComponent }
     ]
+  },
+  { 
+    path: 'admin/user', 
+    canActivate: [AuthenticationGuard],
+    data: { roles : [Role[Role.Admin]]}, 
+    component: UserListComponent
   },
 
   { path: 'notfound', component: NotFoundComponent },

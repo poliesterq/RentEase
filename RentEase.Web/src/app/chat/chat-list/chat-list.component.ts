@@ -78,6 +78,6 @@ export class ChatListComponent implements OnInit {
   }
 
   getSender(message:Message):string{
-    return message.author.id === this.accountId ? (this.language == 'en' ? 'You' : 'Ви'): message.author.firstName; 
+    return message.author.id === this.accountId ? (this.language == 'en' ? 'You' : 'Ви') : message.author.firstName; 
   }
 }
