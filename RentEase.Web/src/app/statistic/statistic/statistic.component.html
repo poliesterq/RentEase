@@ -11,15 +11,14 @@
               }}</mat-card-title>
             </mat-card-header>
             <mat-card-content>
-              <ngx-charts-pie-chart
-                [view]="[600, 400]"
-                [results]="categorySet"
-                [legend]="showLegend"
-                [explodeSlices]="true"
-                [labels]="true"
-                [doughnut]="doughnut"
-                [gradient]="gradient"
-              ></ngx-charts-pie-chart>
+              <div
+                *ngIf="
+                  categorySet == undefined || categorySet.length <= 0;
+                  else categoryChart
+                "
+              >
+                <p>{{ "statistic.label.empty_list" | translate }}</p>
+              </div>
             </mat-card-content>
           </mat-card>
         </div>
@@ -32,17 +31,14 @@
               }}</mat-card-title>
             </mat-card-header>
             <mat-card-content>
-              <ngx-charts-line-chart
-                [view]="[600, 400]"
-                [results]="orderSet"
-                [xAxis]="true"
-                [yAxis]="true"
-                [showXAxisLabel]="true"
-                [showYAxisLabel]="true"
-                [xAxisLabel]="'statistic.label.date' | translate"
-                [yAxisLabel]="'statistic.label.number_orders' | translate"
+              <div
+                *ngIf="
+                  orderSet == undefined || orderSet.length <= 0;
+                  else orderChart
+                "
               >
-              </ngx-charts-line-chart>
+                <p>{{ "statistic.label.empty_list" | translate }}</p>
+              </div>
             </mat-card-content>
           </mat-card>
         </div>
@@ -57,20 +53,58 @@
             }}</mat-card-title>
           </mat-card-header>
           <mat-card-content>
-            <ngx-charts-bar-vertical-2d
-              [view]="[800, 400]"
-              [results]="expenseSet"
-              [xAxis]="showXAxis"
-              [yAxis]="showYAxis"
-              [legend]="showLegend"
-              [showXAxisLabel]="showXAxisLabel"
-              [showYAxisLabel]="showYAxisLabel"
-              [xAxisLabel]="'statistic.label.categories' | translate "
-              [yAxisLabel]="'statistic.label.expense' | translate"
+            <div
+              *ngIf="
+                expenseSet == undefined || expenseSet.length <= 0;
+                else expenseChart
+              "
             >
-            </ngx-charts-bar-vertical-2d> </mat-card-content
-        ></mat-card>
+              <p>{{ "statistic.label.empty_list" | translate }}</p>
+            </div>
+          </mat-card-content></mat-card
+        >
       </div>
     </mat-tab>
   </mat-tab-group>
+
+  <ng-template #categoryChart>
+    <ngx-charts-pie-chart
+      [view]="[600, 400]"
+      [results]="categorySet"
+      [legend]="showLegend"
+      [explodeSlices]="true"
+      [labels]="true"
+      [doughnut]="doughnut"
+      [gradient]="gradient"
+    ></ngx-charts-pie-chart>
+  </ng-template>
+
+  <ng-template #orderChart>
+    <ngx-charts-line-chart
+      [view]="[600, 400]"
+      [results]="orderSet"
+      [xAxis]="true"
+      [yAxis]="true"
+      [showXAxisLabel]="true"
+      [showYAxisLabel]="true"
+      [xAxisLabel]="'statistic.label.date' | translate"
+      [yAxisLabel]="'statistic.label.number_orders' | translate"
+    >
+    </ngx-charts-line-chart>
+  </ng-template>
+
+  <ng-template #expenseChart>
+    <ngx-charts-bar-vertical-2d
+      [view]="[800, 400]"
+      [results]="expenseSet"
+      [xAxis]="showXAxis"
+      [yAxis]="showYAxis"
+      [legend]="showLegend"
+      [showXAxisLabel]="showXAxisLabel"
+      [showYAxisLabel]="showYAxisLabel"
+      [xAxisLabel]="'statistic.label.categories' | translate"
+      [yAxisLabel]="'statistic.label.expense' | translate"
+    >
+    </ngx-charts-bar-vertical-2d>
+  </ng-template>
 </div>

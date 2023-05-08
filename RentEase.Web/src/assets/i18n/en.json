@@ -109,7 +109,8 @@
             "orders": "Orders",
             "expense": "Expense",
             "number_orders": "Number of orders",
-            "date": "Date"
+            "date": "Date",
+            "empty_list": "There are no statistic"
         }
     },
     "placeholder": {
