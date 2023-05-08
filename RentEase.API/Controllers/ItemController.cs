@@ -66,6 +66,7 @@ public class ItemController : ControllerBase
     }
 
     [HttpGet("MaxPriceUS")]
+    [AllowAnonymous]
     public async Task<IActionResult> MaxPrice()
     {
         return Ok(await _itemService.MaxPrice());

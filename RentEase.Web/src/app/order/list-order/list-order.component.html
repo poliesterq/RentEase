@@ -1,0 +1,214 @@
+<div class="container">
+  <div class="container-title">
+    <h1>{{ "title.orders" | translate }}</h1>
+  </div>
+  <div class="container-order">
+    <div class="container-item-filter">
+      <form (ngSubmit)="filter()">
+        <mat-form-field class="search-field" appearance="outline">
+          <mat-label>{{ "title.search" | translate }}</mat-label>
+          <mat-icon color="primary" matSuffix>search</mat-icon>
+          <input matInput [formControl]="search" placeholder="{{ 'order.placeholder.address' | translate }}" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>{{'order.placeholder.date_from' | translate}}</mat-label>
+          <input matInput [formControl]="dateFrom" [matDatepicker]="pickerFrom" />
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="pickerFrom"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #pickerFrom></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>{{'order.placeholder.date_to' | translate}}</mat-label>
+          <input matInput [formControl]="dateTo" [matDatepicker]="pickerTo" />
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="pickerTo"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #pickerTo></mat-datepicker>
+        </mat-form-field>
+
+        <label id="status-label">{{'order.label.status' | translate}}</label>
+        <mat-radio-group
+          [formControl]="isConfirmed"
+          aria-labelledby="remote-label"
+          class="radio-group"
+        >
+          <mat-radio-button
+            class="radio-button"
+            *ngFor="let status of confirmed"
+            [value]="status"
+          >
+            {{ status ? ('order.status.confirmed' | translate) : ('order.status.not_confirmed' | translate) }}
+          </mat-radio-button>
+          <mat-radio-button class="radio-button" [value]="null" checked="true"
+            >{{'order.status.all' | translate}}</mat-radio-button
+          >
+        </mat-radio-group>
+
+        <button type="submit" color="accent" mat-flat-button>
+          {{ "title.search" | translate }}
+        </button>
+      </form>
+    </div>
+    <mat-tab-group (selectedTabChange)="onTabChange($event)">
+      <mat-tab label="{{'order.label.outgoing' | translate}}">
+        <div
+          *ngIf="
+            outgoingOrders == undefined || outgoingOrders.length === 0;
+            else outgoingOrderList
+          "
+        >
+          <h3>{{ "order.text.empty_list" | translate }}</h3>
+        </div>
+      </mat-tab>
+      <mat-tab label="{{'order.label.incoming' | translate}}">
+        <div
+          *ngIf="
+            incomingOrders == undefined || incomingOrders.length === 0;
+            else incomingOrderList
+          "
+        >
+          <h3>{{ "order.text.empty_list" | translate }}</h3>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+
+  <ng-template #outgoingOrderList>
+    <div>
+      <div class="container-order-list">
+        <mat-card
+          *ngFor="let order of outgoingOrders"
+          [routerLink]="['/order/:id']"
+          [queryParams]="{ id: order.id }"
+        >
+          <mat-card-header>
+            <mat-card-title> {{'order.text.order_for' | translate}} {{ order.item.title }} </mat-card-title>
+            <img
+              mat-card-sm-image
+              [src]="
+                order.item.imageUrl
+                  ? order.item.imageUrl
+                  : '..assets/images/default-image.jpg'
+              "
+            />
+          </mat-card-header>
+
+          <mat-card-content>
+            <mat-card class="card-item">
+              <mat-card-header>
+                <mat-card-title> {{'title.item' | translate}} </mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <p>
+                  <mat-icon color="primary">location_on</mat-icon>
+                  {{ order.item.address }}
+                </p>
+                <p>
+                  <mat-icon color="primary" svgIcon="us"></mat-icon>
+                  {{ order.item.priceUS }}
+                </p>
+                <p *ngIf="language == 'ua'">
+                  <mat-icon color="primary" svgIcon="uah"></mat-icon>
+                  {{ order.item.priceUA }}
+                </p>
+              </mat-card-content>
+            </mat-card>
+            <mat-card>
+              <mat-card-header>
+                <mat-card-title> {{'title.order' | translate}} </mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <p>
+                  <mat-icon color="primary">calendar_today</mat-icon>
+                  {{ order.dateFrom | date : "dd/MM/yy" }} -
+                  {{ order.dateTo | date : "dd/MM/yy" }}
+                </p>
+                <p>
+                  <mat-icon color="primary">location_on</mat-icon>
+                  {{ order.deliveryAddress }}
+                </p>
+                <p>
+                  <mat-icon color="primary">library_add_check</mat-icon>
+                  {{ !order.isConfirmed ? ('order.status.not_confirmed' | translate) : !order.isDelivered ? ('order.status.confirmed' | translate) : !order.isFinished ? ('order.status.delivered' | translate) : ('order.status.finished' | translate) }}
+                </p>
+              </mat-card-content>
+            </mat-card>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #incomingOrderList>
+    <div>
+      <div class="container-order-list">
+        <mat-card
+          *ngFor="let order of incomingOrders"
+          [routerLink]="['/order/:id']"
+          [queryParams]="{ id: order.id }"
+        >
+          <mat-card-header>
+            <mat-card-title> Order for {{ order.item.title }} </mat-card-title>
+            <img
+              mat-card-sm-image
+              [src]="
+                order.item.imageUrl
+                  ? order.item.imageUrl
+                  : '..assets/images/default-image.jpg'
+              "
+            />
+          </mat-card-header>
+
+          <mat-card-content>
+            <mat-card class="card-item">
+              <mat-card-header>
+                <mat-card-title> {{'title.item' | translate}} </mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <p>
+                  <mat-icon color="primary">location_on</mat-icon>
+                  {{ order.item.address }}
+                </p>
+                <p>
+                  <mat-icon color="primary" svgIcon="us"></mat-icon>
+                  {{ order.item.priceUS }}
+                </p>
+                <p *ngIf="language == 'ua'">
+                  <mat-icon color="primary" svgIcon="uah"></mat-icon>
+                  {{ order.item.priceUA }}
+                </p>
+              </mat-card-content>
+            </mat-card>
+            <mat-card>
+              <mat-card-header>
+                <mat-card-title> {{'title.order' | translate}} </mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <p>
+                  <mat-icon color="primary">calendar_today</mat-icon>
+                  {{ order.dateFrom | date : "dd/MM/yy" }} -
+                  {{ order.dateTo | date : "dd/MM/yy" }}
+                </p>
+                <p>
+                  <mat-icon color="primary">location_on</mat-icon>
+                  {{ order.deliveryAddress }}
+                </p>
+                <p>
+                  <mat-icon color="primary">library_add_check</mat-icon>
+                  {{ !order.isConfirmed ? ('order.status.not_confirmed' | translate) : !order.isDelivered ? ('order.status.confirmed' | translate) : !order.isFinished ? ('order.status.delivered' | translate) : ('order.status.finished' | translate) }}
+                </p>
+              </mat-card-content>
+            </mat-card>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </ng-template>
+</div>

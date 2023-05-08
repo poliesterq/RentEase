@@ -11,6 +11,8 @@ public class OrderSearchParameters
     public bool? IsConfirmed { get; set; }
     
     public int? ItemId { get; set; }
+    
+    public string? LandlordId { get; set; }
    
     public string? TenantId { get; set; }
 }

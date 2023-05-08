@@ -34,7 +34,6 @@ export class ItemService {
   
   getAll(): Observable<Item[]> {
     let searchParameter:ItemSearchParameters = new ItemSearchParameters();
-    let httpParams = new HttpParams();
 
     this.route.queryParams.subscribe((queryParams) => {
       if (!!queryParams['searchParameter']) {
@@ -73,6 +72,10 @@ export class ItemService {
       }
     });
 
+    return this.http.post<Item[]>(`${this.baseUrl}/GetList`, searchParameter);
+  }
+
+  getAllByParams(searchParameter: ItemSearchParameters): Observable<Item[]> {
     return this.http.post<Item[]>(`${this.baseUrl}/GetList`, searchParameter);
   }
 

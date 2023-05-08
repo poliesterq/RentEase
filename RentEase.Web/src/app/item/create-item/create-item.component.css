@@ -25,10 +25,5 @@ button {
 .radio-group {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1em;
-    margin-bottom: 1em;
-}
-  
-.radio-button {
-    margin: 5px;
+    gap: 0.5em;
 }

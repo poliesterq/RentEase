@@ -28,15 +28,10 @@
           </div>
         </section>
         
-        <!-- <section class="example-section">
-          <h4>Selected categories:</h4>
-          {{ getSelectedCategories() | json }}
-        </section> -->
-        
         <p>{{ "label.priceUS" | translate }}</p>
-        <mat-slider min="0" [max]="itemMaxPrice" [discrete]="true" [step]="10">
+        <mat-slider [min]="0" [max]="itemMaxPrice" [discrete]="true">
           <input [formControl]="priceMinUS" [value]="0" matSliderStartThumb>
-          <input [formControl]="priceMaxUS" [value]="3" matSliderEndThumb>
+          <input [formControl]="priceMaxUS" [value]="itemMaxPrice" matSliderEndThumb>
         </mat-slider>
 
         <button type="submit" color="accent" mat-flat-button>
@@ -45,7 +40,7 @@
       </form>
     </div>
     <div *ngIf="allItems == undefined || allItems.length === 0; else itemList">
-      <h3>There are no items</h3>
+      <h3> {{ "item.text.empty_list" | translate }} </h3>
     </div>
   </div>
 

@@ -1,0 +1,55 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container > div {
+  width: 80%;
+}
+
+.container-title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 2em 2em 2em;
+}
+
+.container-order-status .mat-mdc-card-header {
+  display: flex;
+  justify-content: center;
+}
+
+.container-title-action {
+  margin-top: 1em;
+}
+
+button {
+  margin-right: 1em;
+}
+
+.container-content {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 2em;
+}
+
+.container-additional {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+::ng-deep .mat-horizontal-stepper-header {
+  pointer-events: none !important;
+}
+
+img {
+  max-height: 15em;
+  width: fit-content;
+  border-radius: 5px;
+  display: block;
+  margin: 0 auto 1em;
+}

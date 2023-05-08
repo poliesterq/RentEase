@@ -7,6 +7,8 @@ export class Order {
     dateTo:Date;
     deliveryAddress:string;
     isConfirmed:boolean;
+    isDelivered:boolean;
+    isFinished:boolean;
     itemId:number;
     item:Item;
     tenantId:string;
