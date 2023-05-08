@@ -22,7 +22,7 @@
           {{ getChatName(chat) }}
         </div>
         <div mat-line class="chat-text" *ngIf="getLastMessage(chat) as message">
-          {{ getSender(message) }} : {{ message.text }}
+          {{ getSender(message) }}: {{ message.text }}
           <mat-icon class="icon-read-status">
             {{ message.isRead ? "done_all" : "done" }}
           </mat-icon>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { Chat } from 'src/app/shared/models/chat';
 import { ChatService } from 'src/app/shared/services/chat.service';
 
@@ -11,14 +12,21 @@ import { ChatService } from 'src/app/shared/services/chat.service';
 export class ChatDetailsComponent implements OnInit {
 
   constructor(private chatService:ChatService,
+    private translate:TranslateService,
     private activatedRoute:ActivatedRoute,
     private router:Router) { }
+
+    language = (localStorage.getItem("lang") || 'en') == 'en' ? 'English' : 'Українська';
 
     accountId = localStorage.getItem('id');
     chatId:string;
     chat:Chat;
 
   ngOnInit(): void {
+    this.translate.addLangs(['en', 'ua']);
+    this.translate.setDefaultLang('en');
+    this.translate.use(localStorage.getItem("lang") || 'en'); 
+
     this.activatedRoute
     .queryParams
     .subscribe(params =>

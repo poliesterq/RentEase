@@ -18,7 +18,8 @@
         "delete": "Delete",
         "order": "Order",
         "chat": "Chat",
-        "confirm": "Confirm"
+        "confirm": "Confirm",
+        "leave": "Leave"
     },
     "title": {
         "login": "Login",
@@ -37,7 +38,8 @@
         "order_details": "Order details",
         "details": "Details",
         "orders": "Orders",
-        "order": "Order"
+        "order": "Order",
+        "chats": "Chats"
     },
     "item": {
         "text": {
@@ -81,6 +83,14 @@
             "to": "End",
             "date_from": "Date from",
             "date_to": "Date to"
+        }
+    },
+    "chat": {
+        "text": {
+            "enter": "Enter your message...",
+            "members": "Members",
+            "empty_list": "There are no chats",
+            "you": "You"
         }
     },
     "placeholder": {

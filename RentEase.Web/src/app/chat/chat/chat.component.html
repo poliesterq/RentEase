@@ -37,7 +37,7 @@
                                 </mat-icon>
                             </div>
                         </div>
-                    </div>                
+                    </div>
                 </div>
             </cdk-virtual-scroll-viewport>
         </mat-card-content>
@@ -46,7 +46,7 @@
         <mat-card-footer>
                 <form [formGroup]="form" (ngSubmit)="sendMessage()">
                     <mat-form-field appearance="outline">
-                        <input matInput [formControl]="message" placeholder="Enter your message..." >
+                        <input matInput [formControl]="message" placeholder="{{'chat.text.enter' | translate}}" >
                     </mat-form-field>       
                             
                     <button type="submit" color="primary" mat-icon-button>
