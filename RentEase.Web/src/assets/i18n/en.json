@@ -4,7 +4,8 @@
         "orders": "Orders",
         "profile": "Profile",
         "users": "Users",
-        "login": "Login"
+        "login": "Login",
+        "statistic": "Statistic"
     },
     "button": {
         "edit": "Edit",
@@ -97,6 +98,18 @@
     "user": {
         "text": {
             "empty_list": "There are no users"
+        }
+    },
+    "statistic": {
+        "label": {
+            "statistic": "Statistic",
+            "as_landlord": "Landlord",
+            "as_tenant": "Tenant",
+            "categories": "Categories",
+            "orders": "Orders",
+            "expense": "Expense",
+            "number_orders": "Number of orders",
+            "date": "Date"
         }
     },
     "placeholder": {

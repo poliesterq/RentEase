@@ -1,0 +1,76 @@
+<div class="container">
+  <h1>{{ "statistic.label.statistic" | translate }}</h1>
+  <mat-tab-group>
+    <mat-tab label="{{ 'statistic.label.as_landlord' | translate }}">
+      <div class="charts">
+        <div>
+          <mat-card class="card-landlord-chart">
+            <mat-card-header>
+              <mat-card-title>{{
+                "statistic.label.categories" | translate
+              }}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <ngx-charts-pie-chart
+                [view]="[600, 400]"
+                [results]="categorySet"
+                [legend]="showLegend"
+                [explodeSlices]="true"
+                [labels]="true"
+                [doughnut]="doughnut"
+                [gradient]="gradient"
+              ></ngx-charts-pie-chart>
+            </mat-card-content>
+          </mat-card>
+        </div>
+
+        <div>
+          <mat-card class="card-landlord-chart">
+            <mat-card-header>
+              <mat-card-title>{{
+                "statistic.label.orders" | translate
+              }}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <ngx-charts-line-chart
+                [view]="[600, 400]"
+                [results]="orderSet"
+                [xAxis]="true"
+                [yAxis]="true"
+                [showXAxisLabel]="true"
+                [showYAxisLabel]="true"
+                [xAxisLabel]="'statistic.label.date' | translate"
+                [yAxisLabel]="'statistic.label.number_orders' | translate"
+              >
+              </ngx-charts-line-chart>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab label="{{ 'statistic.label.as_tenant' | translate }}">
+      <div class="charts">
+        <mat-card class="card-tenant-chart">
+          <mat-card-header>
+            <mat-card-title>{{
+              "statistic.label.expense" | translate
+            }}</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <ngx-charts-bar-vertical-2d
+              [view]="[800, 400]"
+              [results]="expenseSet"
+              [xAxis]="showXAxis"
+              [yAxis]="showYAxis"
+              [legend]="showLegend"
+              [showXAxisLabel]="showXAxisLabel"
+              [showYAxisLabel]="showYAxisLabel"
+              [xAxisLabel]="'statistic.label.categories' | translate "
+              [yAxisLabel]="'statistic.label.expense' | translate"
+            >
+            </ngx-charts-bar-vertical-2d> </mat-card-content
+        ></mat-card>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

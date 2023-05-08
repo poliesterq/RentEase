@@ -12,6 +12,11 @@
     {{ "navbar.orders" | translate }}
   </a>
   <a mat-button 
+  *ngIf="role === Role[Role.User]"
+  [routerLink]="['statistic']">
+    {{ "navbar.statistic" | translate }}
+  </a>
+  <a mat-button 
   *ngIf="role === Role[Role.Admin]"
   [routerLink]="['admin/user']">
     {{ "navbar.users" | translate }}

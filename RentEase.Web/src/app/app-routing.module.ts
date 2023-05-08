@@ -21,6 +21,7 @@ import { ChatListComponent } from './chat/chat-list/chat-list.component';
 import { ChatDetailsComponent } from './chat/chat-details/chat-details.component';
 import { Role } from './shared/enums/role.enum';
 import { UserListComponent } from './user-list/user-list.component';
+import { StatisticComponent } from './statistic/statistic/statistic.component';
 
 const routes: Routes = [
   { path: 'home', component: HomePageComponent },
@@ -57,6 +58,9 @@ const routes: Routes = [
       { path: 'details/:id', component: ChatDetailsComponent }
     ]
   },
+
+  { path: 'statistic', canActivate: [AuthenticationGuard], component: StatisticComponent },
+  
   { 
     path: 'admin/user', 
     canActivate: [AuthenticationGuard],

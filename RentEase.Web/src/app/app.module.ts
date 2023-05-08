@@ -13,6 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
+import { NgxChartsModule }from '@swimlane/ngx-charts';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 
 import { MatButtonModule } from '@angular/material/button';
@@ -58,6 +59,7 @@ import { ChatListComponent } from './chat/chat-list/chat-list.component';
 import { ChatDetailsComponent } from './chat/chat-details/chat-details.component';
 import { ChatComponent } from './chat/chat/chat.component';
 import { UserListComponent } from './user-list/user-list.component';
+import { StatisticComponent } from './statistic/statistic/statistic.component';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http);
@@ -91,7 +93,8 @@ export function tokenGetter(){
     ChatListComponent,
     ChatDetailsComponent,
     ChatComponent,
-    UserListComponent
+    UserListComponent,
+    StatisticComponent
    ],
   imports: [
     BrowserModule,
@@ -105,6 +108,7 @@ export function tokenGetter(){
     FormsModule,
     ReactiveFormsModule,
 
+    NgxChartsModule,
     ScrollingModule,
     
     MatButtonModule,

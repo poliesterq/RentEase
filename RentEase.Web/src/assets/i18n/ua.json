@@ -4,7 +4,8 @@
         "orders": "Замовлення",
         "profile": "Профіль",
         "users": "Користувачі",
-        "login": "Вхід"
+        "login": "Вхід",
+        "statistic": "Статистика"
     },
     "button": {
         "edit": "Редагувати",
@@ -97,6 +98,18 @@
     "user": {
         "text": {
             "empty_list": "Тут поки що нема користувачів"
+        }
+    },
+    "statistic": {
+        "label": {
+            "statistic": "Статистика",
+            "as_landlord": "Орендодавець",
+            "as_tenant": "Орендатор",
+            "categories": "Катергорії",
+            "orders": "Замовлення",
+            "expense": "Витрати",
+            "number_orders": "Кількість замовлень",
+            "date": "Дата"
         }
     },
     "placeholder": {
