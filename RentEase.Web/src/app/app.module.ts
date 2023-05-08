@@ -57,6 +57,7 @@ import { ListOrderComponent } from './order/list-order/list-order.component';
 import { ChatListComponent } from './chat/chat-list/chat-list.component';
 import { ChatDetailsComponent } from './chat/chat-details/chat-details.component';
 import { ChatComponent } from './chat/chat/chat.component';
+import { UserListComponent } from './user-list/user-list.component';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http);
@@ -89,7 +90,8 @@ export function tokenGetter(){
     ListOrderComponent,
     ChatListComponent,
     ChatDetailsComponent,
-    ChatComponent
+    ChatComponent,
+    UserListComponent
    ],
   imports: [
     BrowserModule,

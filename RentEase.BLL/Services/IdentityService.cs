@@ -73,7 +73,8 @@ public class IdentityService : IIdentityService
             UserName = user.Email,
             PhoneNumber = user.PhoneNumber,
             FirstName = user.FirstName,
-            LastName = user.LastName
+            LastName = user.LastName,
+            BirthDate = user.BirthDate
         };
 
         var createResult = await _userManager.CreateAsync(newUser, user.Password);
