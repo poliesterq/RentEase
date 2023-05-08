@@ -3,7 +3,7 @@
         "items": "Items",
         "orders": "Orders",
         "profile": "Profile",
-        "user": "Users",
+        "users": "Users",
         "login": "Login"
     },
     "button": {
@@ -39,7 +39,8 @@
         "details": "Details",
         "orders": "Orders",
         "order": "Order",
-        "chats": "Chats"
+        "chats": "Chats",
+        "users": "Users"
     },
     "item": {
         "text": {
@@ -91,6 +92,11 @@
             "members": "Members",
             "empty_list": "There are no chats",
             "you": "You"
+        }
+    },
+    "user": {
+        "text": {
+            "empty_list": "There are no users"
         }
     },
     "placeholder": {

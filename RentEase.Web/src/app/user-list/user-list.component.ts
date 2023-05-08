@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { TranslateService } from '@ngx-translate/core';
 import { tap } from 'rxjs';
 import { Role } from 'src/app/shared/enums/role.enum';
 import { User } from 'src/app/shared/models/user';
@@ -14,6 +15,7 @@ export class UserListComponent implements OnInit {
 
   constructor(
     private userService:UserService,
+    private translate:TranslateService,
     private snackbar:MatSnackBar
     ) { }
   
@@ -22,10 +24,14 @@ export class UserListComponent implements OnInit {
   users:User[];
   applicants:User[];
   recruiters:User[];
-
+  language = (localStorage.getItem('lang') || 'en') == 'en' ? 'English' : 'Українська';
   displayedColumns: string[] = ['number', 'firstName', 'lastName', 'email', 'phoneNumber', 'birthdate', 'interaction'];
 
   ngOnInit(): void {
+    this.translate.addLangs(['en', 'ua']);
+    this.translate.setDefaultLang('en');
+    this.translate.use(localStorage.getItem('lang') || 'en');
+
     this.getAll();
   }
 
