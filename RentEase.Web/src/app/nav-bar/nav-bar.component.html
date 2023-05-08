@@ -5,10 +5,10 @@
     alt="Logo picture"
   />
 
-  <a mat-stroked-button [routerLink]="['/item']">
+  <a mat-button [routerLink]="['/item']">
     {{ "navbar.items" | translate }}
   </a>
-  <a mat-stroked-button [routerLink]="['/order']">
+  <a mat-button [routerLink]="['/order']">
     {{ "navbar.orders" | translate }}
   </a>
 
@@ -44,7 +44,7 @@
   </button>
   <a
     *ngIf="role === Role[Role.User]"
-    mat-stroked-button
+    mat-button
     [routerLink]="['/account/details']"
   >
     <mat-icon aria-hidden="false" svgIcon="user"></mat-icon>
