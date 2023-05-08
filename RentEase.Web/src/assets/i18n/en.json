@@ -33,8 +33,11 @@
         "reserved_dates": "Reserved dates",
         "search": "Search",
         "items": "Items",
+        "item": "Item",
         "order_details": "Order details",
-        "details": "Details"
+        "details": "Details",
+        "orders": "Orders",
+        "order": "Order"
     },
     "item": {
         "text": {
@@ -42,7 +45,8 @@
             "category": "Choose item's category",
             "details": "Fill out item's details",
             "done": "Done",
-            "done_detailed": "You are now done."
+            "done_detailed": "You are now done.",
+            "empty_list": "There are no items"
         },
         "placeholder": {
             "title": "Bike",
@@ -52,19 +56,31 @@
         }
     },
     "order": {
+        "text": {
+            "empty_list": "There are no orders",
+            "order_for": "Order for"
+        },
         "status": {
             "created": "Created",
             "confirmed": "Confirmed",
-            "delivered": "Delivered"
+            "not_confirmed": "Not confirmed",
+            "delivered": "Delivered",
+            "finished": "Finished",
+            "all": "All"
         },
         "label":{
             "date": "Date",
-            "address": "Address"
+            "address": "Address",
+            "status": "Status",
+            "incoming": "Incoming",
+            "outgoing": "Outgoing"
         },
         "placeholder":{
             "address": "USA, New York, 1 Main St",
-            "date_from": "Start",
-            "date_to": "End"
+            "from": "Start",
+            "to": "End",
+            "date_from": "Date from",
+            "date_to": "Date to"
         }
     },
     "placeholder": {

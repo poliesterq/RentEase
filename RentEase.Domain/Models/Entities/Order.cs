@@ -7,15 +7,18 @@ namespace RentEase.Domain.Models.Entities;
 public class Order : BaseEntity
 {
     public DateTime DateFrom { get; set; }
-    
+
     public DateTime DateTo { get; set; }
-    
+
     public string DeliveryAddress { get; set; }
-    
+
     public bool IsConfirmed { get; set; }
-    
-    [NotMapped]
-    public bool IsDelivered => IsConfirmed && DateFrom >= DateTime.Now && DateTo <= DateTime.Now ;
+
+    [NotMapped] 
+    public bool IsDelivered => IsFinished || (IsConfirmed && DateFrom.Date <= DateTime.UtcNow.Date && DateTo.Date >= DateTime.UtcNow.Date);
+
+    [NotMapped] 
+    public bool IsFinished => IsConfirmed && DateTo.Date < DateTime.UtcNow.Date;
     
     public int ItemId { get; set; }
     

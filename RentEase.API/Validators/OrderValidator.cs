@@ -31,6 +31,6 @@ public class OrderValidator : AbstractValidator<OrderDto>
 
     private bool DateFromValidator(DateTime dateFrom)
     {
-        return dateFrom >= DateTime.Today;
+        return dateFrom >= DateTime.UtcNow.Date;
     }
 }

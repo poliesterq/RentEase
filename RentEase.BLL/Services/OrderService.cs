@@ -25,6 +25,11 @@ public class OrderService : IOrderService
     {
         Expression<Func<Order, bool>> orderCondition = order => true;
         
+        if (orderParameters.LandlordId != null)
+        {
+            orderCondition = orderCondition.AndAlso(order => order.Item.LandlordId == orderParameters.LandlordId);
+        }
+        
         if (orderParameters.TenantId != null)
         {
             orderCondition = orderCondition.AndAlso(order => order.TenantId == orderParameters.TenantId);

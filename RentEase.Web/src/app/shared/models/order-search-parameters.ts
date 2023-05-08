@@ -5,4 +5,5 @@ export class OrderSearchParameters {
     isConfirmed?: boolean;
     itemId?: number;
     tenantId?: string;
+    landlordId?: string;
 }

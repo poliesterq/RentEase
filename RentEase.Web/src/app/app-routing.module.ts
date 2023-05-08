@@ -15,6 +15,7 @@ import { ListItemComponent } from './item/list-item/list-item.component';
 import { CreateOrderComponent } from './order/create-order/create-order.component';
 import { DetailsOrderComponent } from './order/details-order/details-order.component';
 import { EditOrderComponent } from './order/edit-order/edit-order.component';
+import { ListOrderComponent } from './order/list-order/list-order.component';
 
 const routes: Routes = [
   { path: 'home', component: HomePageComponent },
@@ -37,6 +38,7 @@ const routes: Routes = [
 
   { path: 'order',
     children: [
+      { path: '', component: ListOrderComponent, canActivate: [AuthenticationGuard] },
       { path: 'create/:itemId', component: CreateOrderComponent, canActivate: [AuthenticationGuard] },
       { path: 'edit/:id', component: EditOrderComponent, canActivate: [AuthenticationGuard]},
       { path: ':id', component: DetailsOrderComponent, canActivate: [AuthenticationGuard]}

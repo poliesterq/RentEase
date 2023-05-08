@@ -81,7 +81,7 @@ export class EditOrderComponent {
 
   edit(): void {
     if (this.form.valid) {
-      let Order: Order = <Order>{
+      let order: Order = <Order>{
         id: this.orderId,
         dateFrom: this.dateFrom.value,
         dateTo: this.dateTo.value,
@@ -92,7 +92,7 @@ export class EditOrderComponent {
       };
 
       this.orderService
-        .edit(Order)
+        .edit(order)
         .pipe(
           tap(() => {
             this.router.navigate(['/order/:id'], {

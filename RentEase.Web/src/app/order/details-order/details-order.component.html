@@ -25,6 +25,11 @@
                 "order.status.delivered" | translate
               }}</ng-template>
             </mat-step>
+            <mat-step [completed]="order.isFinished">
+              <ng-template matStepLabel>{{
+                "order.status.finished" | translate
+              }}</ng-template>
+            </mat-step>
           </mat-stepper>
         </mat-card-content>
       </mat-card>
@@ -108,7 +113,6 @@
         </mat-card-header>
         <mat-card-content>
           <img
-            mat-card-image
             [src]="
               order.item.imageUrl
                 ? order.item.imageUrl

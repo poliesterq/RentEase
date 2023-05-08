@@ -33,8 +33,11 @@
         "reserved_dates": "Заброньовані дати",
         "search": "Пошук",
         "items": "Товари",
+        "item": "Товар",
         "order_details": "Деталі замовлення",
-        "details": "Деталі"
+        "details": "Деталі",
+        "orders": "Замовлення",
+        "order": "Замовлення"
 
     },
     "item": {
@@ -43,7 +46,8 @@
             "category": "Оберить категорію товара",
             "details": "Заповніть деталі товару",
             "done": "Готово",
-            "done_detailed": "Ви закінчили."
+            "done_detailed": "Ви закінчили.",
+            "empty_list": "Тут поки що нема товарів"
         },
         "placeholder": {
             "title": "Велосипед",
@@ -53,19 +57,31 @@
         }
     },
     "order": {
+        "text": {
+            "empty_list": "Тут поки що нема замовлень",
+            "order_for": "Замовлення"
+        },
         "status": {
             "created": "Створено",
             "confirmed": "Підтверджено",
-            "delivered": "Доставлено"
+            "not_confirmed": "Не підтверджено",
+            "delivered": "Доставлено",
+            "finished": "Завершено",
+            "all": "Всі"
         },
         "label":{
             "date": "Дата",
-            "address": "Адреса"
+            "address": "Адреса",
+            "status": "Статус",
+            "incoming": "Вхідні",
+            "outgoing": "Надіслані"
         },
         "placeholder":{
             "address": "Україна, Харків, вул. Сумська 20",
-            "date_from": "Початок",
-            "date_to": "Кінець"
+            "from": "Початок",
+            "to": "Кінець",
+            "date_from": "Дата початку",
+            "date_to": "Дата кінця"
         }
     },
     "placeholder": {

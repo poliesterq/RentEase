@@ -62,8 +62,8 @@
                 <mat-form-field appearance="outline">
                   <mat-label>{{ 'order.label.date' | translate }}</mat-label>
                   <mat-date-range-input [formGroup]="form" [rangePicker]="picker">
-                    <input matStartDate [formControl]="dateFrom" placeholder="{{ 'order.placeholder.date_from' | translate }}"/>
-                    <input matEndDate [formControl]="dateTo" placeholder="{{ 'order.placeholder.date_to' | translate }}" />
+                    <input matStartDate [formControl]="dateFrom" placeholder="{{ 'order.placeholder.from' | translate }}"/>
+                    <input matEndDate [formControl]="dateTo" placeholder="{{ 'order.placeholder.to' | translate }}" />
                   </mat-date-range-input>
                   <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
                   <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
@@ -89,7 +89,7 @@
             </mat-card-content>
           </mat-card>
 
-          <mat-accordion>
+          <mat-accordion *ngIf="item.orders?.length">
             <mat-expansion-panel>
               <mat-expansion-panel-header>
                 <mat-panel-title>

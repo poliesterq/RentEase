@@ -53,7 +53,7 @@
         </mat-card-content>
       </mat-card>
 
-      <mat-accordion>
+      <mat-accordion *ngIf="item.orders?.length">
         <mat-expansion-panel>
           <mat-expansion-panel-header>
             <mat-panel-title>
@@ -70,7 +70,7 @@
       </mat-accordion>
 
       <div
-        *ngIf="!this.role?.includes('Admin') && userId !== item.landlordId"
+        *ngIf="!this.role?.includes('Admin') && userId != item.landlordId"
         class="container-content-addition-order"
       >
         <button
