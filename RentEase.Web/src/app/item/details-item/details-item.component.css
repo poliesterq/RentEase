@@ -17,7 +17,7 @@
 }
 
 .container-content-addition mat-card {
-  min-width: 18em;
+  max-width: 18em;
 }
 
 .container-content-addition-order {

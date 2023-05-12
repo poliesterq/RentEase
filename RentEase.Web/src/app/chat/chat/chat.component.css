@@ -127,7 +127,7 @@ mat-icon {
 }
 
 cdk-virtual-scroll-viewport {
-    min-height: 29em;
+    min-height: 40em;
 }
 
 ::-webkit-scrollbar {

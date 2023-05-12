@@ -14,3 +14,7 @@ mat-card {
     margin: 1em;
     padding: 1em;
 }
+
+.card-landlord-chart{
+    max-width: 40em;
+}

@@ -8,7 +8,7 @@
   <a mat-button [routerLink]="['/item']">
     {{ "navbar.items" | translate }}
   </a>
-  <a mat-button [routerLink]="['/order']" *ngIf="role === Role[Role.User]">
+  <a mat-button *ngIf="role === Role[Role.User]" [routerLink]="['/order']">
     {{ "navbar.orders" | translate }}
   </a>
   <a mat-button *ngIf="role === Role[Role.User]" [routerLink]="['statistic']">
