@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router, ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Category } from 'src/app/shared/enums/category.enum';
 import { Role } from 'src/app/shared/enums/role.enum';
@@ -51,7 +50,6 @@ export class ListItemComponent implements OnInit {
 
   filterForm: FormGroup = new FormGroup({
     search: new FormControl(null),
-    // categories: new FormControl(null),
     address: new FormControl(null),
     priceMaxUS: new FormControl<number>(0),
     priceMinUS: new FormControl(0),

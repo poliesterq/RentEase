@@ -111,6 +111,11 @@
             "number_orders": "Number of orders",
             "date": "Date",
             "empty_list": "There are no statistic"
+        },
+        "description": {
+            "category": "Category-based statistics are built based on the number of bookings made by tenants.",
+            "order": "Order-based statistics display the quantity of orders for each month.",
+            "expense": "This statistics illustrates the distribution of expenses by category in two currencies."
         }
     },
     "placeholder": {
@@ -140,7 +145,7 @@
     },
     "home-page": {
         "title": "Welcome to RentEase!",
-        "paragraph1": "We are your go-to online platform for all your rental needs. Whether you need a car for a road trip, a laptop for a work assignment, or equipment for your DIY project, Rent Ease has got you covered.",
+        "paragraph1": "We are your go-to online platform for all your rental needs. Whether you need a car for a road trip, a laptop for a work assignment, or equipment for your DIY project, RentEase has got you covered.",
         "paragraph2": "With RentEase, you can easily browse and compare rental options from various locations around the world. We work with trusted partners to ensure that you get the best rental experience possible. Our user-friendly platform makes it easy for you to book rentals at your convenience. Simply search for what you need, choose the location and rental dates, and book with just a few clicks.",
         "paragraph3": "At RentEase, we believe in making renting easy and accessible for everyone. Start exploring our wide range of rental options today and find exactly what you need, wherever you need it."
     },

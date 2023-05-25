@@ -51,7 +51,7 @@ export class IdentityService {
   }
 
   edit(user:User) : Observable<AuthenticationResult> {
-    return this.http.put<AuthenticationResult>(this.baseUrl, user).pipe(
+    return this.http.put<AuthenticationResult>(`${this.baseUrl}/Update`, user).pipe(
       tap(() => this.snackbar.open('Successful edit', 'Close',
       {duration: 1500, horizontalPosition: 'right', verticalPosition: 'top'})),
       catchError(error => {
