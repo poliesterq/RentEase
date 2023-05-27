@@ -1,21 +1,41 @@
 import React, {useState} from 'react';
-import {View, Text, TextInput, Button, StyleSheet} from 'react-native';
+import {View, Text, TextInput, Button, StyleSheet, Image} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
+
+import axios, {AxiosError} from 'axios';
+
 // import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export default function LoginForm()  {
+export default function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigation = useNavigation();
+
+  const login = async () => {
+    try {
+
+        navigation.navigate('OrderList' as never);
+    //   const response = await axios.get('https://stackoverflow.com/'); // Replace with your API endpoint
+    //   const data = response.data;
+    //   // Handle the response data
+    //   console.error('try', data);
+    } catch (error) {
+      // Handle the error
+      console.error('catch', error);
+    }
+  };
+
   const handleLogin = async () => {
     const user = {
-      username: email,
+      email: email,
       password: password,
     };
 
+    console.error('response.ok');
+
     try {
       const response = await fetch(
-        'https://localhost:7277/api/Identity/Login',
+        'https://192.168.0.109:7129/api/Identity/Login',
         {
           method: 'POST',
           headers: {
@@ -34,7 +54,7 @@ export default function LoginForm()  {
         // await AsyncStorage.setItem('role', result.role);
 
         // Navigate to the TaskList screen
-        // navigation.navigate('TaskList');
+        // navigation.navigate('TaskList' as never);
       } else {
         // Handle login error
         console.error('Login failed');
@@ -49,6 +69,7 @@ export default function LoginForm()  {
 
   return (
     <View style={styles.container}>
+      {/* <Image source={require('rent_ease_mobile/assets/images/rent.png')} /> */}
       <Text style={styles.title}>Login</Text>
       <TextInput
         placeholder="Email"
@@ -63,23 +84,23 @@ export default function LoginForm()  {
         secureTextEntry
         style={styles.input}
       />
-      <Button title="Submit" onPress={handleLogin} color="#41644a" />
+      <Button title="Login" onPress={login} color="#fe7062" />
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#d9ccc5',
+    backgroundColor: '#fff6f4',
   },
   title: {
     fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 10,
-    color: '#41644a',
+    color: '#1a0e91',
   },
   input: {
     borderWidth: 1,
@@ -87,7 +108,7 @@ const styles = StyleSheet.create({
     padding: 10,
     marginBottom: 10,
     width: '80%',
-    borderColor: '#41644a',
+    borderColor: '#575ef7',
     color: '#41644a',
   },
 });
