@@ -1,0 +1,166 @@
+{
+    "navbar": {
+        "items": "Items",
+        "orders": "Orders",
+        "profile": "Profile",
+        "users": "Users",
+        "login": "Login",
+        "statistic": "Statistic"
+    },
+    "button": {
+        "edit": "Edit",
+        "start": "Start",
+        "login": "Login",
+        "to_registration": "Go to registration",
+        "registration": "Registration",
+        "to_login": "To login",
+        "update": "Update",
+        "create": "Create",
+        "delete": "Delete",
+        "order": "Order",
+        "chat": "Chat",
+        "confirm": "Confirm",
+        "leave": "Leave"
+    },
+    "title": {
+        "login": "Login",
+        "registration": "Registration",
+        "item_create": "Create item",
+        "item_edit": "Edit",
+        "order_create": "Create order",
+        "order_edit": "Edit order",
+        "information": "Information",
+        "landlord": "Landlord",
+        "tenant": "Tenant",
+        "reserved_dates": "Reserved dates",
+        "search": "Search",
+        "items": "Items",
+        "item": "Item",
+        "order_details": "Order details",
+        "details": "Details",
+        "orders": "Orders",
+        "order": "Order",
+        "chats": "Chats",
+        "users": "Users"
+    },
+    "item": {
+        "text": {
+            "info": "Fill out item's information",
+            "category": "Choose item's category",
+            "details": "Fill out item's details",
+            "done": "Done",
+            "done_detailed": "You are now done.",
+            "empty_list": "There are no items"
+        },
+        "placeholder": {
+            "title": "Bike",
+            "description": "Lightweight and agile bike for city rides",
+            "price": "20",
+            "address": "USA, New York, 1 Main St"
+        }
+    },
+    "order": {
+        "text": {
+            "empty_list": "There are no orders",
+            "order_for": "Order for"
+        },
+        "status": {
+            "created": "Created",
+            "confirmed": "Confirmed",
+            "not_confirmed": "Not confirmed",
+            "delivered": "Delivered",
+            "finished": "Finished",
+            "all": "All"
+        },
+        "label":{
+            "date": "Date",
+            "address": "Address",
+            "status": "Status",
+            "incoming": "Incoming",
+            "outgoing": "Outgoing"
+        },
+        "placeholder":{
+            "address": "USA, New York, 1 Main St",
+            "from": "Start",
+            "to": "End",
+            "date_from": "Date from",
+            "date_to": "Date to"
+        }
+    },
+    "chat": {
+        "text": {
+            "enter": "Enter your message...",
+            "members": "Members",
+            "empty_list": "There are no chats",
+            "you": "You"
+        }
+    },
+    "user": {
+        "text": {
+            "empty_list": "There are no users"
+        }
+    },
+    "statistic": {
+        "label": {
+            "statistic": "Statistic",
+            "as_landlord": "Landlord",
+            "as_tenant": "Tenant",
+            "categories": "Categories",
+            "orders": "Orders",
+            "expense": "Expense",
+            "number_orders": "Number of orders",
+            "date": "Date",
+            "empty_list": "There are no statistic"
+        },
+        "description": {
+            "category": "Category-based statistics are built based on the number of bookings made by tenants.",
+            "order": "Order-based statistics display the quantity of orders for each month.",
+            "expense": "This statistics illustrates the distribution of expenses by category in two currencies."
+        }
+    },
+    "placeholder": {
+        "first_name": "Jane",
+        "last_name": "Lane",
+        "phone_number": "+61 00 0000 000",
+        "date_format": "MM/DD/YYYY",
+        "date": "01/01/2000"
+    },
+    "label":{
+        "email": "Email",
+        "password": "Password",
+        "password_confirmation": "Password confirmation",
+        "first_name": "First name",
+        "last_name": "Last name",
+        "phone_number": "Phone number",
+        "birthdate": "Birthdate",
+        "title": "Title",
+        "description": "Description",
+        "category": "Category",
+        "categories": "Categories",
+        "priceUS": "Prise, $",
+        "priceUA": "Prise, ₴",
+        "address": "Address",
+        "image": "Image",
+        "item": "Item"
+    },
+    "home-page": {
+        "title": "Welcome to RentEase!",
+        "paragraph1": "We are your go-to online platform for all your rental needs. Whether you need a car for a road trip, a laptop for a work assignment, or equipment for your DIY project, RentEase has got you covered.",
+        "paragraph2": "With RentEase, you can easily browse and compare rental options from various locations around the world. We work with trusted partners to ensure that you get the best rental experience possible. Our user-friendly platform makes it easy for you to book rentals at your convenience. Simply search for what you need, choose the location and rental dates, and book with just a few clicks.",
+        "paragraph3": "At RentEase, we believe in making renting easy and accessible for everyone. Start exploring our wide range of rental options today and find exactly what you need, wherever you need it."
+    },
+    "error": {
+        "forbidden": {
+            "title": "Oops! Page not found",
+            "description": "we are sorry, you do not have access to this page"
+        },
+        "not_found": {
+            "title": "Oops! Page not found",
+            "description": "we are sorry, but the page you requested was not found"
+        },
+        "unauthorized": {
+            "title": "Oops! Page not found",
+            "description": "we are sorry, you should authorized to get page"
+        }
+    }
+}
