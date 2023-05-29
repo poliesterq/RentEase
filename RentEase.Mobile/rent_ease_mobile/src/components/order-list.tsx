@@ -1,7 +1,15 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, Image, StyleSheet, TouchableOpacity, ScrollView} from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  ScrollView,
+} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {Order} from '../shared/models/order';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function OrderList() {
   const navigation = useNavigation();
@@ -9,40 +17,28 @@ export default function OrderList() {
   const [orders, setOrders] = useState<Order[]>([]);
 
   const handleOrderPress = (id: number) => {
-    navigation.navigate('OrderDetails' as never);
+    navigation.navigate('OrderDetails' as never, {id: id} as never);
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        // const userValue = await AsyncStorage.getItem('id');
-        // const tokenValue = await AsyncStorage.getItem('access_token');
-
-        // setUser(userValue  '');
-        // setToken(tokenValue  '');
-        await getOrders();
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchData();
+    getOrders();
   }, []);
 
   const getOrders = async () => {
     try {
+      const userValue = await AsyncStorage.getItem('id');
+      const tokenValue = await AsyncStorage.getItem('access_token');
+
       const response = await fetch(
         'https://rentease-api.azurewebsites.net/api/Order/GetList',
         {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            Authorization:
-              'Bearer ' +
-              'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJlMzA5NWE4Mi0yNmNhLTQ2ODYtOWI1OS05OWQ5OGY1MGYxYTIiLCJlbWFpbCI6InNhc2hhLmR0cnl1a292YUBudXJlLnVhIiwiaWQiOiJmZjE4MTYwYi1kZWRlLTRlOGMtODYxOC0xYTRmNDhmYjFjYzYiLCJyb2xlIjoiVXNlciIsIm5iZiI6MTY4NTE5MTI0MiwiZXhwIjoxNjg1Mjc3NjQyLCJpYXQiOjE2ODUxOTEyNDJ9.SpY41DLB5dWyjUUX6ZthlRJIx1eKB_kH6_hcvXYSkc8',
+            Authorization: 'Bearer ' + tokenValue,
           },
           body: JSON.stringify({
-            TenantId: 'f5bc5078-a90b-4345-b60d-557eda79689c',
+            TenantId: userValue,
           }),
         },
       );
@@ -60,86 +56,93 @@ export default function OrderList() {
     <View style={styles.container}>
       <Text style={styles.title}>Orders</Text>
       <ScrollView style={styles.scroll} showsVerticalScrollIndicator={false}>
+        {orders.length > 0 ? (
+          <View style={styles.order}>
+            {orders.map(order => (
+              <TouchableOpacity
+                key={order.id}
+                style={styles.orderCard}
+                onPress={() => handleOrderPress(order.id)}>
+                <View style={styles.cardHeader}>
+                  <Text style={styles.cardTitle}>{order.item.title}</Text>
+                  <Image
+                    style={styles.cardImage}
+                    source={
+                      order.item.imageUrl
+                        ? {uri: order.item.imageUrl}
+                        : require('rent_ease_mobile/assets/images/default-image.jpg')
+                    }
+                  />
+                </View>
+                <View style={styles.cardOrder}>
+                  <Text style={styles.itemTitle}>Order</Text>
+                  <Text style={styles.text}>
+                    <Image
+                      source={require('rent_ease_mobile/assets/images/calendar.png')}
+                      style={styles.icon}
+                    />
+                    {new Date(order.dateFrom).toLocaleDateString()}
+                    {' - '}
+                    {new Date(order.dateTo).toLocaleDateString()}
+                  </Text>
+                  <Text style={styles.text}>
+                    <Image
+                      source={require('rent_ease_mobile/assets/images/pin.png')}
+                      style={styles.icon}
+                    />
+                    {order.deliveryAddress}
+                  </Text>
+                  <Text style={styles.text}>
+                    <Image
+                      source={require('rent_ease_mobile/assets/images/check.png')}
+                      style={styles.icon}
+                    />
+                    {order.isConfirmed
+                      ? order.isDelivered
+                        ? order.isFinished
+                          ? 'Finished'
+                          : 'Delivered'
+                        : 'Confirmed'
+                      : 'Not Confirmed'}
+                  </Text>
+                </View>
 
-      <View style={styles.order}>
-        {orders.map(order => (
-          <TouchableOpacity
-            key={order.id}
-            style={styles.orderCard}
-            onPress={() => handleOrderPress(order.id)}>
-            <View style={styles.cardHeader}>
-              <Text style={styles.cardTitle}>{order.item.title}</Text>
-              <Image
-                style={styles.cardImage}
-                source={
-                  order.item.imageUrl
-                    ? {uri: order.item.imageUrl}
-                    : require('rent_ease_mobile/assets/images/default-image.jpg')
-                }
-              />
-            </View>
-            <View style={styles.cardOrder}>
-              <Text style={styles.itemTitle}>Order</Text>
-              <Text style={styles.text}>
-                <Image
-                  source={require('rent_ease_mobile/assets/images/calendar.png')}
-                  style={styles.icon}
-                />
-                {new Date(order.dateFrom).toLocaleDateString()}
-                {' - '}
-                {new Date(order.dateTo).toLocaleDateString()}
-              </Text>
-              <Text style={styles.text}>
-                <Image
-                  source={require('rent_ease_mobile/assets/images/pin.png')}
-                  style={styles.icon}
-                />
-                {order.deliveryAddress}
-              </Text>
-              <Text style={styles.text}>
-                <Image
-                  source={require('rent_ease_mobile/assets/images/check.png')}
-                  style={styles.icon}
-                />
-                {order.isConfirmed
-                  ? order.isDelivered
-                    ? order.isFinished
-                      ? 'Finished'
-                      : 'Delivered'
-                    : 'Confirmed'
-                  : 'Not Confirmed'}
-              </Text>
-            </View>
-
-            <View style={styles.cardOrder}>
-              <Text style={styles.itemTitle}>Item</Text>
-              <Text style={styles.text}>
-                <Image
-                  source={require('rent_ease_mobile/assets/images/pin.png')}
-                  style={styles.icon}
-                />
-                {order.item.address}
-              </Text>
-              <Text style={styles.text}>
-                <Image
-                  source={require('rent_ease_mobile/assets/images/dollar-symbol.png')}
-                  style={styles.icon}
-                />
-                {order.item.priceUS}
-              </Text>
-              <Text style={styles.text}>
-                <Image
-                  source={require('rent_ease_mobile/assets/images/hryvnia.png')}
-                  style={styles.icon}
-                />
-                {order.item.priceUA}
-              </Text>
-            </View>
-          </TouchableOpacity>
-        ))}
-      </View>
+                <View style={styles.cardOrder}>
+                  <Text style={styles.itemTitle}>Item</Text>
+                  <Text style={styles.text}>
+                    <Image
+                      source={require('rent_ease_mobile/assets/images/pin.png')}
+                      style={styles.icon}
+                    />
+                    {order.item.address}
+                  </Text>
+                  <Text style={styles.text}>
+                    <Image
+                      source={require('rent_ease_mobile/assets/images/dollar-symbol.png')}
+                      style={styles.icon}
+                    />
+                    {order.item.priceUS}
+                  </Text>
+                  <Text style={styles.text}>
+                    <Image
+                      source={require('rent_ease_mobile/assets/images/hryvnia.png')}
+                      style={styles.icon}
+                    />
+                    {order.item.priceUA}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            ))}
+          </View>
+        ) : (
+          <View style={styles.container}>
+            <Text style={styles.itemTitle}>There are no orders yet.</Text>
+            <Text style={styles.text}>
+              Please go to web version to place orders.
+            </Text>
+          </View>
+        )}
       </ScrollView>
-
     </View>
   );
 }
@@ -193,21 +196,21 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   cardOrder: {
-    marginHorizontal: 10
+    marginHorizontal: 10,
   },
   itemTitle: {
     fontSize: 14,
     fontWeight: 'bold',
-    color: 'black'
+    color: 'black',
   },
   icon: {
-    marginRight: 10
+    marginRight: 10,
   },
   text: {
     color: 'black',
-    marginBottom: 5
+    marginBottom: 5,
   },
   scroll: {
-    paddingHorizontal: 20
-  }
+    paddingHorizontal: 20,
+  },
 });

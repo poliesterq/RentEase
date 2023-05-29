@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import {View, StyleSheet, TouchableOpacity, Image} from 'react-native';
@@ -6,6 +7,8 @@ const Navbar = () => {
     const navigation = useNavigation();
 
   const logout = async () => {
+    await AsyncStorage.clear();
+
     navigation.navigate('Login' as never);
   };
   const orderList = async () => {

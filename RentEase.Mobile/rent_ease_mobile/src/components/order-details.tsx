@@ -1,46 +1,40 @@
 import React, {useEffect, useState} from 'react';
 import {View, Text, Image, StyleSheet, ScrollView} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
-import {Order} from '../shared/models/order';
+import {RouteProp, useNavigation} from '@react-navigation/native';
 
-export default function OrderDetails() {
-  const navigation = useNavigation();
+import {Order} from '../shared/models/order';
+import {Category} from '../shared/enums/category.enum';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+interface Props {
+  route: { params: { id: number } };
+};
+
+const OrderDetails: React.FC<Props> = ({ route }) => {
+  const { id } = route.params;
 
   const [order, setOrder] = useState<Order>();
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        // const userValue = await AsyncStorage.getItem('id');
-        // const tokenValue = await AsyncStorage.getItem('access_token');
-
-        // setUser(userValue  '');
-        // setToken(tokenValue  '');
-        await getOrder();
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchData();
+    getOrder();
   }, []);
 
+  
   const getOrder = async () => {
-    try {
+    try {      
+      const tokenValue = await AsyncStorage.getItem('access_token');
+
       const response = await fetch(
-        `https://rentease-api.azurewebsites.net/api/Order/${1}`,
+        `https://rentease-api.azurewebsites.net/api/Order/${id}`,
         {
           headers: {
-            Authorization:
-              'Bearer ' +
-              'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJlMzA5NWE4Mi0yNmNhLTQ2ODYtOWI1OS05OWQ5OGY1MGYxYTIiLCJlbWFpbCI6InNhc2hhLmR0cnl1a292YUBudXJlLnVhIiwiaWQiOiJmZjE4MTYwYi1kZWRlLTRlOGMtODYxOC0xYTRmNDhmYjFjYzYiLCJyb2xlIjoiVXNlciIsIm5iZiI6MTY4NTE5MTI0MiwiZXhwIjoxNjg1Mjc3NjQyLCJpYXQiOjE2ODUxOTEyNDJ9.SpY41DLB5dWyjUUX6ZthlRJIx1eKB_kH6_hcvXYSkc8',
+            Authorization: 'Bearer ' + tokenValue,
           },
         },
       );
       if (response.ok) {
         const order = await response.json();
         setOrder(order);
-        console.warn(order);
       }
     } catch (error) {
       console.error(error);
@@ -52,69 +46,106 @@ export default function OrderDetails() {
       <Text style={styles.title}>Orders details</Text>
 
       <ScrollView style={styles.scroll} showsVerticalScrollIndicator={false}>
-        <View style={styles.orderCard}>
-          <Text style={styles.itemTitle}>{order?.item.title}</Text>
-          <Text style={styles.text}> status add stepper </Text>
-        </View>
+        <View style={styles.details}>
+          <View style={styles.orderCard}>
+            <Text style={styles.itemTitle}>{order?.item.title}</Text>
+            <View style={styles.progressPic}>
+              <Image
+                source={require('rent_ease_mobile/assets/images/check-mark.png')}
+                style={styles.icon}
+              />
+              <Text style={styles.textProgress}> — </Text>
 
-        <View style={styles.orderCard}>
-          <Text style={styles.itemTitle}>Details</Text>
-          {/* <Text style={styles.text}>
-                <Image
-                  source={require('rent_ease_mobile/assets/images/calendar.png')}
-                  style={styles.icon}
-                />
-                {order?.dateFrom?.toLocaleDateString()}
-                {' - '}
-                {order?.dateTo?.toLocaleDateString()}
-              </Text> */}
-          <Text style={styles.text}>
+              <Image
+                source={order?.isConfirmed ? require('rent_ease_mobile/assets/images/check-mark.png') : require('rent_ease_mobile/assets/images/circle-2.png')}
+                style={styles.icon}
+              />
+              <Text style={styles.textProgress}> — </Text>
+
+              <Image
+                source={order?.isDelivered ? require('rent_ease_mobile/assets/images/check-mark.png') : require('rent_ease_mobile/assets/images/circle-3.png')}
+                style={styles.icon}
+              />
+              <Text style={styles.textProgress}> — </Text>
+
+              <Image
+                source={order?.isFinished ? require('rent_ease_mobile/assets/images/check-mark.png') : require('rent_ease_mobile/assets/images/circle-4.png')}
+                style={styles.icon}
+              />
+            </View>
+            <View style={styles.progress}>
+              <Text style={styles.text}>Created</Text>
+              <Text style={styles.text}>Confirmed</Text>
+              <Text style={styles.text}>Delivered</Text>
+              <Text style={styles.text}>Finished</Text>
+            </View>
+          </View>
+
+          <View style={styles.orderCard}>
+            <Text style={styles.itemTitle}>Details</Text>
+            <Text style={styles.text}>
+              <Image
+                source={require('rent_ease_mobile/assets/images/calendar.png')}
+                style={styles.icon}
+              />
+              {order && (
+                <>
+                  {new Date(order.dateFrom).toLocaleDateString()}
+                  {' - '}
+                  {new Date(order.dateTo).toLocaleDateString()}
+                </>
+              )}
+            </Text>
+            <Text style={styles.text}>
+              <Image
+                source={require('rent_ease_mobile/assets/images/pin.png')}
+                style={styles.icon}
+              />
+              {order?.deliveryAddress}
+            </Text>
+          </View>
+          <View style={styles.orderCard}>
+            <Text style={styles.itemTitle}>Item</Text>
+            <Text style={styles.text}>
+              {order && Category[order.item.category]}
+            </Text>
             <Image
-              source={require('rent_ease_mobile/assets/images/pin.png')}
-              style={styles.icon}
+              style={styles.cardImage}
+              source={
+                order?.item.imageUrl
+                  ? {uri: order.item.imageUrl}
+                  : require('rent_ease_mobile/assets/images/default-image.jpg')
+              }
             />
-            {order?.deliveryAddress}
-          </Text>
-        </View>
-        <View style={styles.orderCard}>
-          <Text style={styles.itemTitle}>Item</Text>
-          <Text style={styles.text}>{order?.item.category}</Text>
-          <Image
-            style={styles.cardImage}
-            source={
-              order?.item.imageUrl
-                ? {uri: order.item.imageUrl}
-                : require('rent_ease_mobile/assets/images/default-image.jpg')
-            }
-          />
-          <Text style={styles.text}>
-            <Image
-              source={require('rent_ease_mobile/assets/images/description.png')}
-              style={styles.icon}
-            />
-            {order?.item.description}
-          </Text>
-          <Text style={styles.text}>
-            <Image
-              source={require('rent_ease_mobile/assets/images/pin.png')}
-              style={styles.icon}
-            />
-            {order?.item.address}
-          </Text>
-          <Text style={styles.text}>
-            <Image
-              source={require('rent_ease_mobile/assets/images/dollar-symbol.png')}
-              style={styles.icon}
-            />
-            {'10'}
-          </Text>
-          <Text style={styles.text}>
-            <Image
-              source={require('rent_ease_mobile/assets/images/hryvnia.png')}
-              style={styles.icon}
-            />
-            {'100'}
-          </Text>
+            <Text style={styles.text}>
+              <Image
+                source={require('rent_ease_mobile/assets/images/description.png')}
+                style={styles.icon}
+              />
+              {order?.item.description}
+            </Text>
+            <Text style={styles.text}>
+              <Image
+                source={require('rent_ease_mobile/assets/images/pin.png')}
+                style={styles.icon}
+              />
+              {order?.item.address}
+            </Text>
+            <Text style={styles.text}>
+              <Image
+                source={require('rent_ease_mobile/assets/images/dollar-symbol.png')}
+                style={styles.icon}
+              />
+              {'10'}
+            </Text>
+            <Text style={styles.text}>
+              <Image
+                source={require('rent_ease_mobile/assets/images/hryvnia.png')}
+                style={styles.icon}
+              />
+              {'100'}
+            </Text>
+          </View>
         </View>
       </ScrollView>
     </View>
@@ -160,6 +191,7 @@ const styles = StyleSheet.create({
     color: '#1a0e91',
   },
   cardImage: {
+    marginHorizontal: 40,
     width: 200,
     height: 200,
     borderRadius: 5,
@@ -187,4 +219,25 @@ const styles = StyleSheet.create({
   scroll: {
     paddingHorizontal: 20,
   },
+  details: {
+    flex: 1,
+    gap: 15,
+  },
+  progress: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  textProgress: {
+    color: '#fe7062'
+  },
+  progressPic: {
+    marginTop: 10,
+    marginHorizontal: 10,
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  }
 });
+
+export default OrderDetails;
