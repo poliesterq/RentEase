@@ -36,6 +36,6 @@ public class UserController : ControllerBase
     public async Task<IActionResult> Delete(string id)
     {
         var result = await _userService.Delete(id);
-        return result ? Ok() : NotFound();
+        return result ? Ok() : BadRequest();
     }
 }

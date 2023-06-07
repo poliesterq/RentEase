@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using RentEase.BLL.Abstractions;
 using RentEase.Domain.Enums;
 using RentEase.Domain.Models.Entities;
+using RentEase.Domain.Models.Request;
 
 namespace RentEase.BLL.Services;
 
@@ -10,11 +11,13 @@ public class UserService : IUserService
 {
     private readonly ILogger<UserService> _logger;
     private readonly UserManager<User> _userManager;
+    private readonly IOrderService _orderService;
 
-    public UserService(ILogger<UserService> logger, UserManager<User> userManager)
+    public UserService(ILogger<UserService> logger, UserManager<User> userManager, IOrderService orderService)
     {
         _logger = logger;
         _userManager = userManager;
+        _orderService = orderService;
     }
 
     public async Task<IEnumerable<User>> Get(List<Role> roles = null)
@@ -62,6 +65,14 @@ public class UserService : IUserService
         var user = await _userManager.FindByIdAsync(id);
 
         if (user == null)
+        {
+            _logger.LogInformation($"User with id = {id} wasn't deleted");
+            return false;
+        }
+
+        var unableToDelete = (await _orderService.Get(new OrderSearchParameters { TenantId = id })).Any();
+
+        if (unableToDelete)
         {
             _logger.LogInformation($"User with id = {id} wasn't deleted");
             return false;
