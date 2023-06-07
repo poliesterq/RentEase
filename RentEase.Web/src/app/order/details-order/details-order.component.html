@@ -77,7 +77,7 @@
         mat-stroked-button
         color="accent"
         [routerLink]="['/order/edit/:id']"
-        [queryParams]="{ id: order.item.id }"
+        [queryParams]="{ id: order.id }"
       >
         <mat-icon>edit</mat-icon>
         {{ "button.edit" | translate }}

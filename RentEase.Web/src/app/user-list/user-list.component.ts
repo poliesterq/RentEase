@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslateService } from '@ngx-translate/core';
-import { tap } from 'rxjs';
+import { catchError, tap, throwError } from 'rxjs';
 import { Role } from 'src/app/shared/enums/role.enum';
 import { User } from 'src/app/shared/models/user';
 import { UserService } from 'src/app/shared/services/user.service';
@@ -47,6 +47,12 @@ export class UserListComponent implements OnInit {
         this.snackbar.open('User was deleted succesfuly', 'Close',
         {duration: 2000, horizontalPosition: 'right', verticalPosition: 'top'});
         window.location.reload();
+      }),
+      catchError((error)=> {
+        this.snackbar.open('User cannot be deleted, because of unfinished orders', 'Close',
+        {duration: 2000, horizontalPosition: 'right', verticalPosition: 'top'});
+
+        return throwError(error);
       })).subscribe();
   }
 }
